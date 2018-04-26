@@ -1,7 +1,8 @@
 #fichero Makefile
 
 OBJ = gramatica.o lexico.o 
-
+ejecucion: gramatica
+	./gramatica entrada.dml
 gramatica.h : gramatica
 	make clean
 

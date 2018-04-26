@@ -1,101 +1,41 @@
 //Ejemplo de un programa básico en DOMOL
 //No tiene errores
 //No incluye ampliaciones
+
 //Se puede utilizar para probar la fase I
+
 VARIABLES	//Una variable entera, dos de tipo real y una de tipo lógico
 	temp_basica = 20		
 	temp_verano = temp_basica * 1.1
 	temp_invierno = temp_basica / 1.1
-	verano = falso
-	
+	temp_basica = 20
+
 SENSORES
 	float T1,T2   	//miden la temperatura, devuelve float
 	int Reloj	//mide la hora en el reloj del sistema, devuelve int
 	bool S		//mide si el sistema está o no operativo, devuelve bool
-
 ACTUADORES
+
 	Calefaccion	//calefacción
 	A_C		//aire acondicionado
-	SYSTEM		//sistema domótico
-	
 
+	SYSTEM		//sistema domótico
 ESTADOS
+
 	Inicial
 	Final
 	Todo_OFF	
 	C_ON
-	AC_ON
-	
-
+	AC_ONA
 TRANSICIONES
+
 	iniciar:		Inicial  -> Todo_OFF	
-	encender_calefacción:	Todo_OFF -> C_ON
-	apagar_calefacción:	C_ON     -> Todo_OFF
+	encender_calefaccion:	Todo_OFF -> C_ON
+	apagar_calefaccion:	C_ON     -> Todo_OFF
+
 	encender_aireacond:	Todo_OFF -> AC_ON
 	apagar_aireacond:	AC_ON    -> Todo_OFF
+
 	acabar1:		Todo_OFF -> Final
 	acabar2:		C_ON     -> Final
 	acabar3:		AC_ON    -> Final
-
-COMPORTAMIENTO
-	Inicial [
-		si (S == true)
-		entonces [
-			activar SYSTEM
-			desactivar Calefaccion
-			desactivar A_C
-			transicion iniciar
-			]
-	]
-
-	Final [
-		desactivar Calefaccion
-		desactivar A_C
-		desactivar SYSTEM
-	]
-
-	Todo_OFF [
-		si  (verano==false) && (T1 < temp_invierno)
-		entonces [
-			activar Calefaccion
-	         	transicion encender_calefacción
-			]
-		si ((verano==true) && (T2 > temp_verano))
-		entonces [
-			activar A_C
-			transicion encender_aireacond
-			]
-		si (S==false)  [
-			transicion acabar1
-			]
-
-	]
-	
-	C_ON [  
-		si T2 > temp_verano
-		entonces [
-			desactivar Calefaccion
-			transicion Todo_OFF
-		]
-		si (S==false)  [
-			transicion acabar2
-			]
-	]
-	 
-	AC_ON [
-		si T1 < temp_invierno
-		entonces [
-			desactivar A_C
-			transicion Todo_OFF
-		]
-		si (S==false)  [
-			transicion acabar3
-			]
-	]
-
-
-
-
-
-
-

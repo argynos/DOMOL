@@ -28,9 +28,13 @@ ENTERO {DIGITO}+
 REAL ({DIGITO}+[.]{DIGITO}*)|({DIGITO}*[.]{DIGITO}+)
 
 %%
-"//"                            BEGIN(COM1);
+^[/][/]                           BEGIN(COM1);
 <COM1>.                    		;
-<COM1>\n                        BEGIN(0);n_lines++;return('\n');
+<COM1>\n                        BEGIN(0);n_lines++;
+"//"                            BEGIN(COM2);
+<COM2>.                    		;
+<COM2>\n                        BEGIN(0);n_lines++;return('\n');
+
 
 
 ^[\n\t]+										{;}
@@ -40,11 +44,14 @@ REAL ({DIGITO}+[.]{DIGITO}*)|({DIGITO}*[.]{DIGITO}+)
 [E][S][T][A][D][O][S]							return ESTADOS;
 [T][R][A][N][S][I][C][I][O][N][E][S]			return TRANSICIONES;
 [C][O][M][P][O][R][T][A][M][I][E][N][T][O]		return COMPORTAMIENTO;
-[i][n][t]										return int;
-[f][l][o][a][t]									return float;
-[b][o][o][l]									return bool;
+[-][>]											return MOV;
+[i][n][t]										return INT;
+[f][l][o][a][t]									return FLOAT;
+[b][o][o][l]									return BOOL;
 [t][r][u][e]									return TRUE;
 [f][a][l][s][e]									return FALSE;
+[v][e][r][d][a][d][e][r][o]						return VERDADERO;
+[f][a][l][s][o]									return FALSO;
 "&&"											return AND;
 "||"											return OR;
 "!"												return NOT;
@@ -58,7 +65,7 @@ REAL ({DIGITO}+[.]{DIGITO}*)|({DIGITO}*[.]{DIGITO}+)
 {ENTERO}										yylval.entero = atoi(yytext);return NUMERO;
 {REAL}											yylval.real = atof(yytext); return REAL;
 \n												n_lines++; return (yytext[0]);
-[\t ]*											n_lines++;	
+[\t ]*											;	
 . 												return (yytext[0]); 
 
 %%

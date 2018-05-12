@@ -1,13 +1,17 @@
-/*
-*
-* PROYECTO FINAL DOMOL
-*
-* gramatica.y
-*
-* Autores: Fernández Rincón, Sergio Y González Gómez, Luis.
-* Version: 1.0
-* Fecha: 02/05/2018
-*/
+/**
+ * PROYECTO FINAL DOMOL
+ *
+ * lexico.l
+ *
+ * Fecha: 2017/2018
+ * Versión: 2.0
+ *
+ * Autores: Sergio Fernández Rincón
+ *          Luis González Gómez.
+ *
+ *
+ * TEORÍA DE LENGUAJES
+ */
 %{
 #include "gramatica.h"
 #include <math.h>

@@ -2,9 +2,9 @@
 
 OBJ = gramatica.o lexico.o 
 ejecucion: gramatica
-	./gramatica ejemplo1.dml salida1.txt
+	#./gramatica ejemplo1.dml salida1.txt
 	#./gramatica ejemplo_errores.dml salida_errores.txt
-	#./gramatica ejemplo_errores_calculadora.dml salida_errores_calc.txt
+	./gramatica ejemplo_errores_calculadora.dml salida_errores_calc.txt
 gramatica.h : gramatica
 	make clean
 

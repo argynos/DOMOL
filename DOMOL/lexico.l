@@ -37,7 +37,8 @@ REAL ({DIGITO}+[.]{DIGITO}*)|({DIGITO}*[.]{DIGITO}+)
 
 
 
-^[\n\t]+										{;}
+^[\n]											{n_lines++;}
+^[\t ]*[\n]										{n_lines++;}
 [V][A][R][I][A][B][L][E][S]						return VARIABLES;
 [S][E][N][S][O][R][E][S]						return SENSORES;
 [A][C][T][U][A][D][O][R][E][S]					return ACTUADORES;
@@ -52,6 +53,12 @@ REAL ({DIGITO}+[.]{DIGITO}*)|({DIGITO}*[.]{DIGITO}+)
 [f][a][l][s][e]									return FALSE;
 [v][e][r][d][a][d][e][r][o]						return VERDADERO;
 [f][a][l][s][o]									return FALSO;
+[s][i]											return SI;
+[e][n][t][o][n][c][e][s]						return ENTONCES;
+[s][i][n][o]									return SINO;
+[a][c][t][i][v][a][r]							return ACTIVAR;
+[d][e][s][a][c][t][i][v][a][r]					return DESACTIVAR;
+[t][r][a][n][s][i][c][i][o][n]					return TRANSICION;
 "&&"											return AND;
 "||"											return OR;
 "!"												return NOT;
@@ -65,7 +72,7 @@ REAL ({DIGITO}+[.]{DIGITO}*)|({DIGITO}*[.]{DIGITO}+)
 {ENTERO}										yylval.entero = atoi(yytext);return NUMERO;
 {REAL}											yylval.real = atof(yytext); return REAL;
 \n												n_lines++; return (yytext[0]);
-[\t ]*											;	
+[\t ]*											;
 . 												return (yytext[0]); 
 
 %%

@@ -29,18 +29,17 @@ ESTADOS
 
 TRANSICIONES
 	iniciar:		Inicial  -> Todo_OFF	
-	encender_calefacción:	Todo_OFF -> C_ON
-	apagar_calefacción:	C_ON     -> Todo_OFF
-	encender_aireacond:	Todo_OFF -> AC_ON
-	apagar_aireacond:	AC_ON    -> Todo_OFF
+	encender_calef:		Todo_OFF -> C_ON
+	apagar_calef:		C_ON     -> Todo_OFF
+	encender_airea:		Todo_OFF -> AC_ON
+	apagar_airea:	   	AC_ON    -> Todo_OFF
 	acabar1:		Todo_OFF -> Final
 	acabar2:		C_ON     -> Final
 	acabar3:		AC_ON    -> Final
 
 COMPORTAMIENTO
 	Inicial [
-		si (S == true)
-		entonces [
+		si (verdadero == S)  [
 			activar SYSTEM
 			desactivar Calefaccion
 			desactivar A_C
@@ -55,40 +54,36 @@ COMPORTAMIENTO
 	]
 
 	Todo_OFF [
-		si  (verano==false) && (T1 < temp_invierno)
-		entonces [
+		si  (falso == verano) && (T1 < temp_invierno)  [
 			activar Calefaccion
-	         	transicion encender_calefacción
+	         	transicion encender_calef
 			]
-		si ((verano==true) && (T2 > temp_verano))
-		entonces [
+		si ((verdadero == verano) && (T2 > temp_verano))  [
 			activar A_C
-			transicion encender_aireacond
+			transicion encender_airea
 			]
-		si (S==false)  [
+		si (falso == S)  [
 			transicion acabar1
 			]
 
 	]
 	
 	C_ON [  
-		si T2 > temp_verano
-		entonces [
+		si T2 > temp_verano  [
 			desactivar Calefaccion
-			transicion Todo_OFF
+			transicion apagar_calef
 		]
-		si (S==false)  [
+		si (falso == S)  [
 			transicion acabar2
 			]
 	]
 	 
 	AC_ON [
-		si T1 < temp_invierno
-		entonces [
+		si T1 < temp_invierno [
 			desactivar A_C
-			transicion Todo_OFF
+			transicion apagar_airea
 		]
-		si (S==false)  [
+		si (falso == S)  [
 			transicion acabar3
 			]
 	]

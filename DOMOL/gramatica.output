@@ -1,0 +1,2046 @@
+Terminals unused in grammar
+
+   NOT
+   ENTONCES
+   TRUE
+   FALSE
+   '%'
+
+
+Estado 119 conflictos: 2 reducción(ones)/reducción(ones)
+Estado 129 conflictos: 2 desplazamiento(s)/reducción(ones)
+Estado 143 conflictos: 2 desplazamiento(s)/reducción(ones)
+Estado 161 conflictos: 1 desplazamiento(s)/reducción(ones)
+
+
+Gramática
+
+    0 $accept: programa $end
+
+    1 programa: %empty
+    2         | zona_variables zona_sensores zona_actuadores zona_estados zona_transiciones zona_comportamiento
+
+    3 zona_comportamiento: inicio_zona_comportamiento lista_comportamientos
+
+    4 inicio_zona_comportamiento: COMPORTAMIENTO '\n'
+
+    5 lista_comportamientos: comportamiento_estado
+    6                      | lista_comportamientos comportamiento_estado
+
+    7 comportamiento_estado: inicio_comportamiento instruccion_basica ']' '\n'
+    8                      | error '\n'
+
+    9 inicio_comportamiento: ID '[' '\n'
+   10                      | error '\n'
+
+   11 instruccion_basica: instrucion_actuador
+   12                   | instruccion_variable
+   13                   | instruccion_transicion
+   14                   | lista_alternativas
+   15                   | instruccion_basica instrucion_actuador
+   16                   | instruccion_basica instruccion_variable
+   17                   | instruccion_basica instruccion_transicion
+   18                   | instruccion_basica lista_alternativas
+
+   19 lista_alternativas: alternativa
+   20                   | lista_alternativas alternativa
+
+   21 alternativa: SI expr_logic '[' '\n' instruccion_basica ']' '\n'
+   22            | SI expr_logic '[' '\n' instruccion_basica ']' '\n' alternativa_sino
+   23            | error '\n'
+
+   24 alternativa_sino: SINO '[' instruccion_basica ']' '\n'
+   25                 | error '\n'
+
+   26 instrucion_actuador: ACTIVAR ID '\n'
+   27                    | DESACTIVAR ID '\n'
+
+   28 instruccion_variable: ID '=' expr '\n'
+
+   29 instruccion_transicion: TRANSICION ID '\n'
+
+   30 zona_transiciones: inicio_zona_transiciones lista_transiciones
+
+   31 inicio_zona_transiciones: TRANSICIONES '\n'
+
+   32 lista_transiciones: transicion
+   33                   | lista_transiciones transicion
+
+   34 transicion: ID ':' ID MOV ID '\n'
+   35           | error '\n'
+
+   36 zona_estados: inicio_zona_estados lista_estados
+
+   37 inicio_zona_estados: ESTADOS '\n'
+
+   38 lista_estados: lista_estados estado
+   39              | estado
+
+   40 estado: ID '\n'
+   41       | error '\n'
+
+   42 zona_actuadores: inicio_zona_actuadores lista_actuadores
+
+   43 inicio_zona_actuadores: ACTUADORES '\n'
+
+   44 lista_actuadores: lista_actuadores actuador
+   45                 | actuador
+
+   46 actuador: ID '\n'
+   47         | error '\n'
+
+   48 zona_sensores: inico_zona_sensores lista_sensores
+
+   49 inico_zona_sensores: SENSORES '\n'
+
+   50 lista_sensores: lista_sensores linea_sensores
+   51               | linea_sensores
+
+   52 linea_sensores: sensores '\n'
+   53               | error '\n'
+
+   54 sensores: tipo ID
+   55         | sensores ',' ID
+
+   56 tipo: INT
+   57     | FLOAT
+   58     | BOOL
+
+   59 zona_variables: inicio_zona_variables lista_variables
+
+   60 inicio_zona_variables: VARIABLES '\n'
+
+   61 lista_variables: lista_variables variable
+   62                | variable
+
+   63 variable: ID '=' expr '\n'
+   64         | ID '=' expr_logic '\n'
+   65         | error '\n'
+
+   66 expr: NUMERO
+   67     | REAL
+   68     | ID
+   69     | '-' expr
+   70     | expr '+' expr
+   71     | expr '-' expr
+   72     | expr '*' expr
+   73     | expr '/' expr
+   74     | expr '^' expr
+   75     | '(' expr ')'
+
+   76 expr_logic: VERDADERO
+   77           | FALSO
+   78           | expr_logic EQUAL expr
+   79           | expr_logic NOT_EQUAL expr
+   80           | expr HT expr
+   81           | expr HET expr
+   82           | expr LT expr
+   83           | expr LET expr
+   84           | expr_logic AND expr_logic
+   85           | expr_logic OR expr_logic
+   86           | '(' expr_logic ')'
+
+
+Terminales con las reglas donde aparecen
+
+$end (0) 0
+'\n' (10) 4 7 8 9 10 21 22 23 24 25 26 27 28 29 31 34 35 37 40 41 43
+    46 47 49 52 53 60 63 64 65
+'%' (37)
+'(' (40) 75 86
+')' (41) 75 86
+'*' (42) 72
+'+' (43) 70
+',' (44) 55
+'-' (45) 69 71
+'/' (47) 73
+':' (58) 34
+'=' (61) 28 63 64
+'[' (91) 9 21 22 24
+']' (93) 7 21 22 24
+'^' (94) 74
+error (256) 8 10 23 25 35 41 47 53 65
+VARIABLES (258) 60
+SENSORES (259) 49
+ACTUADORES (260) 43
+ESTADOS (261) 37
+TRANSICIONES (262) 31
+COMPORTAMIENTO (263) 4
+MOV (264) 34
+HT (265) 80
+HET (266) 81
+LT (267) 82
+LET (268) 83
+AND (269) 84
+OR (270) 85
+NOT (271)
+EQUAL (272) 78
+NOT_EQUAL (273) 79
+ID (274) 9 26 27 28 29 34 40 46 54 55 63 64 68
+FLOAT (275) 57
+INT (276) 56
+BOOL (277) 58
+SI (278) 21 22
+SINO (279) 24
+ACTIVAR (280) 26
+DESACTIVAR (281) 27
+TRANSICION (282) 29
+ENTONCES (283)
+NUMERO (284) 66
+REAL (285) 67
+TRUE (286)
+FALSE (287)
+VERDADERO (288) 76
+FALSO (289) 77
+MenosUnario (290)
+
+
+No terminales con las reglas donde aparecen
+
+$accept (50)
+    en la izquierda: 0
+programa (51)
+    en la izquierda: 1 2, en la derecha: 0
+zona_comportamiento (52)
+    en la izquierda: 3, en la derecha: 2
+inicio_zona_comportamiento (53)
+    en la izquierda: 4, en la derecha: 3
+lista_comportamientos (54)
+    en la izquierda: 5 6, en la derecha: 3 6
+comportamiento_estado (55)
+    en la izquierda: 7 8, en la derecha: 5 6
+inicio_comportamiento (56)
+    en la izquierda: 9 10, en la derecha: 7
+instruccion_basica (57)
+    en la izquierda: 11 12 13 14 15 16 17 18, en la derecha: 7 15 16
+    17 18 21 22 24
+lista_alternativas (58)
+    en la izquierda: 19 20, en la derecha: 14 18 20
+alternativa (59)
+    en la izquierda: 21 22 23, en la derecha: 19 20
+alternativa_sino (60)
+    en la izquierda: 24 25, en la derecha: 22
+instrucion_actuador (61)
+    en la izquierda: 26 27, en la derecha: 11 15
+instruccion_variable (62)
+    en la izquierda: 28, en la derecha: 12 16
+instruccion_transicion (63)
+    en la izquierda: 29, en la derecha: 13 17
+zona_transiciones (64)
+    en la izquierda: 30, en la derecha: 2
+inicio_zona_transiciones (65)
+    en la izquierda: 31, en la derecha: 30
+lista_transiciones (66)
+    en la izquierda: 32 33, en la derecha: 30 33
+transicion (67)
+    en la izquierda: 34 35, en la derecha: 32 33
+zona_estados (68)
+    en la izquierda: 36, en la derecha: 2
+inicio_zona_estados (69)
+    en la izquierda: 37, en la derecha: 36
+lista_estados (70)
+    en la izquierda: 38 39, en la derecha: 36 38
+estado (71)
+    en la izquierda: 40 41, en la derecha: 38 39
+zona_actuadores (72)
+    en la izquierda: 42, en la derecha: 2
+inicio_zona_actuadores (73)
+    en la izquierda: 43, en la derecha: 42
+lista_actuadores (74)
+    en la izquierda: 44 45, en la derecha: 42 44
+actuador (75)
+    en la izquierda: 46 47, en la derecha: 44 45
+zona_sensores (76)
+    en la izquierda: 48, en la derecha: 2
+inico_zona_sensores (77)
+    en la izquierda: 49, en la derecha: 48
+lista_sensores (78)
+    en la izquierda: 50 51, en la derecha: 48 50
+linea_sensores (79)
+    en la izquierda: 52 53, en la derecha: 50 51
+sensores (80)
+    en la izquierda: 54 55, en la derecha: 52 55
+tipo (81)
+    en la izquierda: 56 57 58, en la derecha: 54
+zona_variables (82)
+    en la izquierda: 59, en la derecha: 2
+inicio_zona_variables (83)
+    en la izquierda: 60, en la derecha: 59
+lista_variables (84)
+    en la izquierda: 61 62, en la derecha: 59 61
+variable (85)
+    en la izquierda: 63 64 65, en la derecha: 61 62
+expr (86)
+    en la izquierda: 66 67 68 69 70 71 72 73 74 75, en la derecha:
+    28 63 69 70 71 72 73 74 75 78 79 80 81 82 83
+expr_logic (87)
+    en la izquierda: 76 77 78 79 80 81 82 83 84 85 86, en la derecha:
+    21 22 64 78 79 84 85 86
+
+
+State 0
+
+    0 $accept: . programa $end
+
+    VARIABLES  desplazar e ir al estado 1
+
+    $default  reduce usando la regla 1 (programa)
+
+    programa               ir al estado 2
+    zona_variables         ir al estado 3
+    inicio_zona_variables  ir al estado 4
+
+
+State 1
+
+   60 inicio_zona_variables: VARIABLES . '\n'
+
+    '\n'  desplazar e ir al estado 5
+
+
+State 2
+
+    0 $accept: programa . $end
+
+    $end  desplazar e ir al estado 6
+
+
+State 3
+
+    2 programa: zona_variables . zona_sensores zona_actuadores zona_estados zona_transiciones zona_comportamiento
+
+    SENSORES  desplazar e ir al estado 7
+
+    zona_sensores        ir al estado 8
+    inico_zona_sensores  ir al estado 9
+
+
+State 4
+
+   59 zona_variables: inicio_zona_variables . lista_variables
+
+    error  desplazar e ir al estado 10
+    ID     desplazar e ir al estado 11
+
+    lista_variables  ir al estado 12
+    variable         ir al estado 13
+
+
+State 5
+
+   60 inicio_zona_variables: VARIABLES '\n' .
+
+    $default  reduce usando la regla 60 (inicio_zona_variables)
+
+
+State 6
+
+    0 $accept: programa $end .
+
+    $default  aceptar
+
+
+State 7
+
+   49 inico_zona_sensores: SENSORES . '\n'
+
+    '\n'  desplazar e ir al estado 14
+
+
+State 8
+
+    2 programa: zona_variables zona_sensores . zona_actuadores zona_estados zona_transiciones zona_comportamiento
+
+    ACTUADORES  desplazar e ir al estado 15
+
+    zona_actuadores         ir al estado 16
+    inicio_zona_actuadores  ir al estado 17
+
+
+State 9
+
+   48 zona_sensores: inico_zona_sensores . lista_sensores
+
+    error  desplazar e ir al estado 18
+    FLOAT  desplazar e ir al estado 19
+    INT    desplazar e ir al estado 20
+    BOOL   desplazar e ir al estado 21
+
+    lista_sensores  ir al estado 22
+    linea_sensores  ir al estado 23
+    sensores        ir al estado 24
+    tipo            ir al estado 25
+
+
+State 10
+
+   65 variable: error . '\n'
+
+    '\n'  desplazar e ir al estado 26
+
+
+State 11
+
+   63 variable: ID . '=' expr '\n'
+   64         | ID . '=' expr_logic '\n'
+
+    '='  desplazar e ir al estado 27
+
+
+State 12
+
+   59 zona_variables: inicio_zona_variables lista_variables .
+   61 lista_variables: lista_variables . variable
+
+    error  desplazar e ir al estado 10
+    ID     desplazar e ir al estado 11
+
+    SENSORES  reduce usando la regla 59 (zona_variables)
+
+    variable  ir al estado 28
+
+
+State 13
+
+   62 lista_variables: variable .
+
+    $default  reduce usando la regla 62 (lista_variables)
+
+
+State 14
+
+   49 inico_zona_sensores: SENSORES '\n' .
+
+    $default  reduce usando la regla 49 (inico_zona_sensores)
+
+
+State 15
+
+   43 inicio_zona_actuadores: ACTUADORES . '\n'
+
+    '\n'  desplazar e ir al estado 29
+
+
+State 16
+
+    2 programa: zona_variables zona_sensores zona_actuadores . zona_estados zona_transiciones zona_comportamiento
+
+    ESTADOS  desplazar e ir al estado 30
+
+    zona_estados         ir al estado 31
+    inicio_zona_estados  ir al estado 32
+
+
+State 17
+
+   42 zona_actuadores: inicio_zona_actuadores . lista_actuadores
+
+    error  desplazar e ir al estado 33
+    ID     desplazar e ir al estado 34
+
+    lista_actuadores  ir al estado 35
+    actuador          ir al estado 36
+
+
+State 18
+
+   53 linea_sensores: error . '\n'
+
+    '\n'  desplazar e ir al estado 37
+
+
+State 19
+
+   57 tipo: FLOAT .
+
+    $default  reduce usando la regla 57 (tipo)
+
+
+State 20
+
+   56 tipo: INT .
+
+    $default  reduce usando la regla 56 (tipo)
+
+
+State 21
+
+   58 tipo: BOOL .
+
+    $default  reduce usando la regla 58 (tipo)
+
+
+State 22
+
+   48 zona_sensores: inico_zona_sensores lista_sensores .
+   50 lista_sensores: lista_sensores . linea_sensores
+
+    error  desplazar e ir al estado 18
+    FLOAT  desplazar e ir al estado 19
+    INT    desplazar e ir al estado 20
+    BOOL   desplazar e ir al estado 21
+
+    ACTUADORES  reduce usando la regla 48 (zona_sensores)
+
+    linea_sensores  ir al estado 38
+    sensores        ir al estado 24
+    tipo            ir al estado 25
+
+
+State 23
+
+   51 lista_sensores: linea_sensores .
+
+    $default  reduce usando la regla 51 (lista_sensores)
+
+
+State 24
+
+   52 linea_sensores: sensores . '\n'
+   55 sensores: sensores . ',' ID
+
+    '\n'  desplazar e ir al estado 39
+    ','   desplazar e ir al estado 40
+
+
+State 25
+
+   54 sensores: tipo . ID
+
+    ID  desplazar e ir al estado 41
+
+
+State 26
+
+   65 variable: error '\n' .
+
+    $default  reduce usando la regla 65 (variable)
+
+
+State 27
+
+   63 variable: ID '=' . expr '\n'
+   64         | ID '=' . expr_logic '\n'
+
+    ID         desplazar e ir al estado 42
+    NUMERO     desplazar e ir al estado 43
+    REAL       desplazar e ir al estado 44
+    VERDADERO  desplazar e ir al estado 45
+    FALSO      desplazar e ir al estado 46
+    '-'        desplazar e ir al estado 47
+    '('        desplazar e ir al estado 48
+
+    expr        ir al estado 49
+    expr_logic  ir al estado 50
+
+
+State 28
+
+   61 lista_variables: lista_variables variable .
+
+    $default  reduce usando la regla 61 (lista_variables)
+
+
+State 29
+
+   43 inicio_zona_actuadores: ACTUADORES '\n' .
+
+    $default  reduce usando la regla 43 (inicio_zona_actuadores)
+
+
+State 30
+
+   37 inicio_zona_estados: ESTADOS . '\n'
+
+    '\n'  desplazar e ir al estado 51
+
+
+State 31
+
+    2 programa: zona_variables zona_sensores zona_actuadores zona_estados . zona_transiciones zona_comportamiento
+
+    TRANSICIONES  desplazar e ir al estado 52
+
+    zona_transiciones         ir al estado 53
+    inicio_zona_transiciones  ir al estado 54
+
+
+State 32
+
+   36 zona_estados: inicio_zona_estados . lista_estados
+
+    error  desplazar e ir al estado 55
+    ID     desplazar e ir al estado 56
+
+    lista_estados  ir al estado 57
+    estado         ir al estado 58
+
+
+State 33
+
+   47 actuador: error . '\n'
+
+    '\n'  desplazar e ir al estado 59
+
+
+State 34
+
+   46 actuador: ID . '\n'
+
+    '\n'  desplazar e ir al estado 60
+
+
+State 35
+
+   42 zona_actuadores: inicio_zona_actuadores lista_actuadores .
+   44 lista_actuadores: lista_actuadores . actuador
+
+    error  desplazar e ir al estado 33
+    ID     desplazar e ir al estado 34
+
+    ESTADOS  reduce usando la regla 42 (zona_actuadores)
+
+    actuador  ir al estado 61
+
+
+State 36
+
+   45 lista_actuadores: actuador .
+
+    $default  reduce usando la regla 45 (lista_actuadores)
+
+
+State 37
+
+   53 linea_sensores: error '\n' .
+
+    $default  reduce usando la regla 53 (linea_sensores)
+
+
+State 38
+
+   50 lista_sensores: lista_sensores linea_sensores .
+
+    $default  reduce usando la regla 50 (lista_sensores)
+
+
+State 39
+
+   52 linea_sensores: sensores '\n' .
+
+    $default  reduce usando la regla 52 (linea_sensores)
+
+
+State 40
+
+   55 sensores: sensores ',' . ID
+
+    ID  desplazar e ir al estado 62
+
+
+State 41
+
+   54 sensores: tipo ID .
+
+    $default  reduce usando la regla 54 (sensores)
+
+
+State 42
+
+   68 expr: ID .
+
+    $default  reduce usando la regla 68 (expr)
+
+
+State 43
+
+   66 expr: NUMERO .
+
+    $default  reduce usando la regla 66 (expr)
+
+
+State 44
+
+   67 expr: REAL .
+
+    $default  reduce usando la regla 67 (expr)
+
+
+State 45
+
+   76 expr_logic: VERDADERO .
+
+    $default  reduce usando la regla 76 (expr_logic)
+
+
+State 46
+
+   77 expr_logic: FALSO .
+
+    $default  reduce usando la regla 77 (expr_logic)
+
+
+State 47
+
+   69 expr: '-' . expr
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 64
+
+
+State 48
+
+   75 expr: '(' . expr ')'
+   86 expr_logic: '(' . expr_logic ')'
+
+    ID         desplazar e ir al estado 42
+    NUMERO     desplazar e ir al estado 43
+    REAL       desplazar e ir al estado 44
+    VERDADERO  desplazar e ir al estado 45
+    FALSO      desplazar e ir al estado 46
+    '-'        desplazar e ir al estado 47
+    '('        desplazar e ir al estado 48
+
+    expr        ir al estado 65
+    expr_logic  ir al estado 66
+
+
+State 49
+
+   63 variable: ID '=' expr . '\n'
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+   80 expr_logic: expr . HT expr
+   81           | expr . HET expr
+   82           | expr . LT expr
+   83           | expr . LET expr
+
+    HT    desplazar e ir al estado 67
+    HET   desplazar e ir al estado 68
+    LT    desplazar e ir al estado 69
+    LET   desplazar e ir al estado 70
+    '+'   desplazar e ir al estado 71
+    '-'   desplazar e ir al estado 72
+    '*'   desplazar e ir al estado 73
+    '/'   desplazar e ir al estado 74
+    '^'   desplazar e ir al estado 75
+    '\n'  desplazar e ir al estado 76
+
+
+State 50
+
+   64 variable: ID '=' expr_logic . '\n'
+   78 expr_logic: expr_logic . EQUAL expr
+   79           | expr_logic . NOT_EQUAL expr
+   84           | expr_logic . AND expr_logic
+   85           | expr_logic . OR expr_logic
+
+    AND        desplazar e ir al estado 77
+    OR         desplazar e ir al estado 78
+    EQUAL      desplazar e ir al estado 79
+    NOT_EQUAL  desplazar e ir al estado 80
+    '\n'       desplazar e ir al estado 81
+
+
+State 51
+
+   37 inicio_zona_estados: ESTADOS '\n' .
+
+    $default  reduce usando la regla 37 (inicio_zona_estados)
+
+
+State 52
+
+   31 inicio_zona_transiciones: TRANSICIONES . '\n'
+
+    '\n'  desplazar e ir al estado 82
+
+
+State 53
+
+    2 programa: zona_variables zona_sensores zona_actuadores zona_estados zona_transiciones . zona_comportamiento
+
+    COMPORTAMIENTO  desplazar e ir al estado 83
+
+    zona_comportamiento         ir al estado 84
+    inicio_zona_comportamiento  ir al estado 85
+
+
+State 54
+
+   30 zona_transiciones: inicio_zona_transiciones . lista_transiciones
+
+    error  desplazar e ir al estado 86
+    ID     desplazar e ir al estado 87
+
+    lista_transiciones  ir al estado 88
+    transicion          ir al estado 89
+
+
+State 55
+
+   41 estado: error . '\n'
+
+    '\n'  desplazar e ir al estado 90
+
+
+State 56
+
+   40 estado: ID . '\n'
+
+    '\n'  desplazar e ir al estado 91
+
+
+State 57
+
+   36 zona_estados: inicio_zona_estados lista_estados .
+   38 lista_estados: lista_estados . estado
+
+    error  desplazar e ir al estado 55
+    ID     desplazar e ir al estado 56
+
+    TRANSICIONES  reduce usando la regla 36 (zona_estados)
+
+    estado  ir al estado 92
+
+
+State 58
+
+   39 lista_estados: estado .
+
+    $default  reduce usando la regla 39 (lista_estados)
+
+
+State 59
+
+   47 actuador: error '\n' .
+
+    $default  reduce usando la regla 47 (actuador)
+
+
+State 60
+
+   46 actuador: ID '\n' .
+
+    $default  reduce usando la regla 46 (actuador)
+
+
+State 61
+
+   44 lista_actuadores: lista_actuadores actuador .
+
+    $default  reduce usando la regla 44 (lista_actuadores)
+
+
+State 62
+
+   55 sensores: sensores ',' ID .
+
+    $default  reduce usando la regla 55 (sensores)
+
+
+State 63
+
+   75 expr: '(' . expr ')'
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 93
+
+
+State 64
+
+   69 expr: '-' expr .
+   70     | expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+
+    $default  reduce usando la regla 69 (expr)
+
+
+State 65
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+   75     | '(' expr . ')'
+   80 expr_logic: expr . HT expr
+   81           | expr . HET expr
+   82           | expr . LT expr
+   83           | expr . LET expr
+
+    HT   desplazar e ir al estado 67
+    HET  desplazar e ir al estado 68
+    LT   desplazar e ir al estado 69
+    LET  desplazar e ir al estado 70
+    '+'  desplazar e ir al estado 71
+    '-'  desplazar e ir al estado 72
+    '*'  desplazar e ir al estado 73
+    '/'  desplazar e ir al estado 74
+    '^'  desplazar e ir al estado 75
+    ')'  desplazar e ir al estado 94
+
+
+State 66
+
+   78 expr_logic: expr_logic . EQUAL expr
+   79           | expr_logic . NOT_EQUAL expr
+   84           | expr_logic . AND expr_logic
+   85           | expr_logic . OR expr_logic
+   86           | '(' expr_logic . ')'
+
+    AND        desplazar e ir al estado 77
+    OR         desplazar e ir al estado 78
+    EQUAL      desplazar e ir al estado 79
+    NOT_EQUAL  desplazar e ir al estado 80
+    ')'        desplazar e ir al estado 95
+
+
+State 67
+
+   80 expr_logic: expr HT . expr
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 96
+
+
+State 68
+
+   81 expr_logic: expr HET . expr
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 97
+
+
+State 69
+
+   82 expr_logic: expr LT . expr
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 98
+
+
+State 70
+
+   83 expr_logic: expr LET . expr
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 99
+
+
+State 71
+
+   70 expr: expr '+' . expr
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 100
+
+
+State 72
+
+   71 expr: expr '-' . expr
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 101
+
+
+State 73
+
+   72 expr: expr '*' . expr
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 102
+
+
+State 74
+
+   73 expr: expr '/' . expr
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 103
+
+
+State 75
+
+   74 expr: expr '^' . expr
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 104
+
+
+State 76
+
+   63 variable: ID '=' expr '\n' .
+
+    $default  reduce usando la regla 63 (variable)
+
+
+State 77
+
+   84 expr_logic: expr_logic AND . expr_logic
+
+    ID         desplazar e ir al estado 42
+    NUMERO     desplazar e ir al estado 43
+    REAL       desplazar e ir al estado 44
+    VERDADERO  desplazar e ir al estado 45
+    FALSO      desplazar e ir al estado 46
+    '-'        desplazar e ir al estado 47
+    '('        desplazar e ir al estado 48
+
+    expr        ir al estado 105
+    expr_logic  ir al estado 106
+
+
+State 78
+
+   85 expr_logic: expr_logic OR . expr_logic
+
+    ID         desplazar e ir al estado 42
+    NUMERO     desplazar e ir al estado 43
+    REAL       desplazar e ir al estado 44
+    VERDADERO  desplazar e ir al estado 45
+    FALSO      desplazar e ir al estado 46
+    '-'        desplazar e ir al estado 47
+    '('        desplazar e ir al estado 48
+
+    expr        ir al estado 105
+    expr_logic  ir al estado 107
+
+
+State 79
+
+   78 expr_logic: expr_logic EQUAL . expr
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 108
+
+
+State 80
+
+   79 expr_logic: expr_logic NOT_EQUAL . expr
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 109
+
+
+State 81
+
+   64 variable: ID '=' expr_logic '\n' .
+
+    $default  reduce usando la regla 64 (variable)
+
+
+State 82
+
+   31 inicio_zona_transiciones: TRANSICIONES '\n' .
+
+    $default  reduce usando la regla 31 (inicio_zona_transiciones)
+
+
+State 83
+
+    4 inicio_zona_comportamiento: COMPORTAMIENTO . '\n'
+
+    '\n'  desplazar e ir al estado 110
+
+
+State 84
+
+    2 programa: zona_variables zona_sensores zona_actuadores zona_estados zona_transiciones zona_comportamiento .
+
+    $default  reduce usando la regla 2 (programa)
+
+
+State 85
+
+    3 zona_comportamiento: inicio_zona_comportamiento . lista_comportamientos
+
+    error  desplazar e ir al estado 111
+    ID     desplazar e ir al estado 112
+
+    lista_comportamientos  ir al estado 113
+    comportamiento_estado  ir al estado 114
+    inicio_comportamiento  ir al estado 115
+
+
+State 86
+
+   35 transicion: error . '\n'
+
+    '\n'  desplazar e ir al estado 116
+
+
+State 87
+
+   34 transicion: ID . ':' ID MOV ID '\n'
+
+    ':'  desplazar e ir al estado 117
+
+
+State 88
+
+   30 zona_transiciones: inicio_zona_transiciones lista_transiciones .
+   33 lista_transiciones: lista_transiciones . transicion
+
+    error  desplazar e ir al estado 86
+    ID     desplazar e ir al estado 87
+
+    COMPORTAMIENTO  reduce usando la regla 30 (zona_transiciones)
+
+    transicion  ir al estado 118
+
+
+State 89
+
+   32 lista_transiciones: transicion .
+
+    $default  reduce usando la regla 32 (lista_transiciones)
+
+
+State 90
+
+   41 estado: error '\n' .
+
+    $default  reduce usando la regla 41 (estado)
+
+
+State 91
+
+   40 estado: ID '\n' .
+
+    $default  reduce usando la regla 40 (estado)
+
+
+State 92
+
+   38 lista_estados: lista_estados estado .
+
+    $default  reduce usando la regla 38 (lista_estados)
+
+
+State 93
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+   75     | '(' expr . ')'
+
+    '+'  desplazar e ir al estado 71
+    '-'  desplazar e ir al estado 72
+    '*'  desplazar e ir al estado 73
+    '/'  desplazar e ir al estado 74
+    '^'  desplazar e ir al estado 75
+    ')'  desplazar e ir al estado 94
+
+
+State 94
+
+   75 expr: '(' expr ')' .
+
+    $default  reduce usando la regla 75 (expr)
+
+
+State 95
+
+   86 expr_logic: '(' expr_logic ')' .
+
+    $default  reduce usando la regla 86 (expr_logic)
+
+
+State 96
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+   80 expr_logic: expr HT expr .
+
+    '+'  desplazar e ir al estado 71
+    '-'  desplazar e ir al estado 72
+    '*'  desplazar e ir al estado 73
+    '/'  desplazar e ir al estado 74
+    '^'  desplazar e ir al estado 75
+
+    $default  reduce usando la regla 80 (expr_logic)
+
+
+State 97
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+   81 expr_logic: expr HET expr .
+
+    '+'  desplazar e ir al estado 71
+    '-'  desplazar e ir al estado 72
+    '*'  desplazar e ir al estado 73
+    '/'  desplazar e ir al estado 74
+    '^'  desplazar e ir al estado 75
+
+    $default  reduce usando la regla 81 (expr_logic)
+
+
+State 98
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+   82 expr_logic: expr LT expr .
+
+    '+'  desplazar e ir al estado 71
+    '-'  desplazar e ir al estado 72
+    '*'  desplazar e ir al estado 73
+    '/'  desplazar e ir al estado 74
+    '^'  desplazar e ir al estado 75
+
+    $default  reduce usando la regla 82 (expr_logic)
+
+
+State 99
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+   83 expr_logic: expr LET expr .
+
+    '+'  desplazar e ir al estado 71
+    '-'  desplazar e ir al estado 72
+    '*'  desplazar e ir al estado 73
+    '/'  desplazar e ir al estado 74
+    '^'  desplazar e ir al estado 75
+
+    $default  reduce usando la regla 83 (expr_logic)
+
+
+State 100
+
+   70 expr: expr . '+' expr
+   70     | expr '+' expr .
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+
+    '*'  desplazar e ir al estado 73
+    '/'  desplazar e ir al estado 74
+    '^'  desplazar e ir al estado 75
+
+    $default  reduce usando la regla 70 (expr)
+
+
+State 101
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   71     | expr '-' expr .
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+
+    '*'  desplazar e ir al estado 73
+    '/'  desplazar e ir al estado 74
+    '^'  desplazar e ir al estado 75
+
+    $default  reduce usando la regla 71 (expr)
+
+
+State 102
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   72     | expr '*' expr .
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+
+    '^'  desplazar e ir al estado 75
+
+    $default  reduce usando la regla 72 (expr)
+
+
+State 103
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   73     | expr '/' expr .
+   74     | expr . '^' expr
+
+    '^'  desplazar e ir al estado 75
+
+    $default  reduce usando la regla 73 (expr)
+
+
+State 104
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+   74     | expr '^' expr .
+
+    '^'  desplazar e ir al estado 75
+
+    $default  reduce usando la regla 74 (expr)
+
+
+State 105
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+   80 expr_logic: expr . HT expr
+   81           | expr . HET expr
+   82           | expr . LT expr
+   83           | expr . LET expr
+
+    HT   desplazar e ir al estado 67
+    HET  desplazar e ir al estado 68
+    LT   desplazar e ir al estado 69
+    LET  desplazar e ir al estado 70
+    '+'  desplazar e ir al estado 71
+    '-'  desplazar e ir al estado 72
+    '*'  desplazar e ir al estado 73
+    '/'  desplazar e ir al estado 74
+    '^'  desplazar e ir al estado 75
+
+
+State 106
+
+   78 expr_logic: expr_logic . EQUAL expr
+   79           | expr_logic . NOT_EQUAL expr
+   84           | expr_logic . AND expr_logic
+   84           | expr_logic AND expr_logic .
+   85           | expr_logic . OR expr_logic
+
+    EQUAL      desplazar e ir al estado 79
+    NOT_EQUAL  desplazar e ir al estado 80
+
+    $default  reduce usando la regla 84 (expr_logic)
+
+
+State 107
+
+   78 expr_logic: expr_logic . EQUAL expr
+   79           | expr_logic . NOT_EQUAL expr
+   84           | expr_logic . AND expr_logic
+   85           | expr_logic . OR expr_logic
+   85           | expr_logic OR expr_logic .
+
+    EQUAL      desplazar e ir al estado 79
+    NOT_EQUAL  desplazar e ir al estado 80
+
+    $default  reduce usando la regla 85 (expr_logic)
+
+
+State 108
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+   78 expr_logic: expr_logic EQUAL expr .
+
+    '+'  desplazar e ir al estado 71
+    '-'  desplazar e ir al estado 72
+    '*'  desplazar e ir al estado 73
+    '/'  desplazar e ir al estado 74
+    '^'  desplazar e ir al estado 75
+
+    $default  reduce usando la regla 78 (expr_logic)
+
+
+State 109
+
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+   79 expr_logic: expr_logic NOT_EQUAL expr .
+
+    '+'  desplazar e ir al estado 71
+    '-'  desplazar e ir al estado 72
+    '*'  desplazar e ir al estado 73
+    '/'  desplazar e ir al estado 74
+    '^'  desplazar e ir al estado 75
+
+    $default  reduce usando la regla 79 (expr_logic)
+
+
+State 110
+
+    4 inicio_zona_comportamiento: COMPORTAMIENTO '\n' .
+
+    $default  reduce usando la regla 4 (inicio_zona_comportamiento)
+
+
+State 111
+
+    8 comportamiento_estado: error . '\n'
+   10 inicio_comportamiento: error . '\n'
+
+    '\n'  desplazar e ir al estado 119
+
+
+State 112
+
+    9 inicio_comportamiento: ID . '[' '\n'
+
+    '['  desplazar e ir al estado 120
+
+
+State 113
+
+    3 zona_comportamiento: inicio_zona_comportamiento lista_comportamientos .
+    6 lista_comportamientos: lista_comportamientos . comportamiento_estado
+
+    error  desplazar e ir al estado 111
+    ID     desplazar e ir al estado 112
+
+    $end  reduce usando la regla 3 (zona_comportamiento)
+
+    comportamiento_estado  ir al estado 121
+    inicio_comportamiento  ir al estado 115
+
+
+State 114
+
+    5 lista_comportamientos: comportamiento_estado .
+
+    $default  reduce usando la regla 5 (lista_comportamientos)
+
+
+State 115
+
+    7 comportamiento_estado: inicio_comportamiento . instruccion_basica ']' '\n'
+
+    error       desplazar e ir al estado 122
+    ID          desplazar e ir al estado 123
+    SI          desplazar e ir al estado 124
+    ACTIVAR     desplazar e ir al estado 125
+    DESACTIVAR  desplazar e ir al estado 126
+    TRANSICION  desplazar e ir al estado 127
+
+    instruccion_basica      ir al estado 128
+    lista_alternativas      ir al estado 129
+    alternativa             ir al estado 130
+    instrucion_actuador     ir al estado 131
+    instruccion_variable    ir al estado 132
+    instruccion_transicion  ir al estado 133
+
+
+State 116
+
+   35 transicion: error '\n' .
+
+    $default  reduce usando la regla 35 (transicion)
+
+
+State 117
+
+   34 transicion: ID ':' . ID MOV ID '\n'
+
+    ID  desplazar e ir al estado 134
+
+
+State 118
+
+   33 lista_transiciones: lista_transiciones transicion .
+
+    $default  reduce usando la regla 33 (lista_transiciones)
+
+
+State 119
+
+    8 comportamiento_estado: error '\n' .
+   10 inicio_comportamiento: error '\n' .
+
+    $end      reduce usando la regla 8 (comportamiento_estado)
+    error     reduce usando la regla 8 (comportamiento_estado)
+    error     [reduce usando la regla 10 (inicio_comportamiento)]
+    ID        reduce usando la regla 8 (comportamiento_estado)
+    ID        [reduce usando la regla 10 (inicio_comportamiento)]
+    $default  reduce usando la regla 10 (inicio_comportamiento)
+
+
+State 120
+
+    9 inicio_comportamiento: ID '[' . '\n'
+
+    '\n'  desplazar e ir al estado 135
+
+
+State 121
+
+    6 lista_comportamientos: lista_comportamientos comportamiento_estado .
+
+    $default  reduce usando la regla 6 (lista_comportamientos)
+
+
+State 122
+
+   23 alternativa: error . '\n'
+
+    '\n'  desplazar e ir al estado 136
+
+
+State 123
+
+   28 instruccion_variable: ID . '=' expr '\n'
+
+    '='  desplazar e ir al estado 137
+
+
+State 124
+
+   21 alternativa: SI . expr_logic '[' '\n' instruccion_basica ']' '\n'
+   22            | SI . expr_logic '[' '\n' instruccion_basica ']' '\n' alternativa_sino
+
+    ID         desplazar e ir al estado 42
+    NUMERO     desplazar e ir al estado 43
+    REAL       desplazar e ir al estado 44
+    VERDADERO  desplazar e ir al estado 45
+    FALSO      desplazar e ir al estado 46
+    '-'        desplazar e ir al estado 47
+    '('        desplazar e ir al estado 48
+
+    expr        ir al estado 105
+    expr_logic  ir al estado 138
+
+
+State 125
+
+   26 instrucion_actuador: ACTIVAR . ID '\n'
+
+    ID  desplazar e ir al estado 139
+
+
+State 126
+
+   27 instrucion_actuador: DESACTIVAR . ID '\n'
+
+    ID  desplazar e ir al estado 140
+
+
+State 127
+
+   29 instruccion_transicion: TRANSICION . ID '\n'
+
+    ID  desplazar e ir al estado 141
+
+
+State 128
+
+    7 comportamiento_estado: inicio_comportamiento instruccion_basica . ']' '\n'
+   15 instruccion_basica: instruccion_basica . instrucion_actuador
+   16                   | instruccion_basica . instruccion_variable
+   17                   | instruccion_basica . instruccion_transicion
+   18                   | instruccion_basica . lista_alternativas
+
+    error       desplazar e ir al estado 122
+    ID          desplazar e ir al estado 123
+    SI          desplazar e ir al estado 124
+    ACTIVAR     desplazar e ir al estado 125
+    DESACTIVAR  desplazar e ir al estado 126
+    TRANSICION  desplazar e ir al estado 127
+    ']'         desplazar e ir al estado 142
+
+    lista_alternativas      ir al estado 143
+    alternativa             ir al estado 130
+    instrucion_actuador     ir al estado 144
+    instruccion_variable    ir al estado 145
+    instruccion_transicion  ir al estado 146
+
+
+State 129
+
+   14 instruccion_basica: lista_alternativas .
+   20 lista_alternativas: lista_alternativas . alternativa
+
+    error  desplazar e ir al estado 122
+    SI     desplazar e ir al estado 124
+
+    error       [reduce usando la regla 14 (instruccion_basica)]
+    ID          reduce usando la regla 14 (instruccion_basica)
+    SI          [reduce usando la regla 14 (instruccion_basica)]
+    ACTIVAR     reduce usando la regla 14 (instruccion_basica)
+    DESACTIVAR  reduce usando la regla 14 (instruccion_basica)
+    TRANSICION  reduce usando la regla 14 (instruccion_basica)
+    ']'         reduce usando la regla 14 (instruccion_basica)
+
+    alternativa  ir al estado 147
+
+
+State 130
+
+   19 lista_alternativas: alternativa .
+
+    $default  reduce usando la regla 19 (lista_alternativas)
+
+
+State 131
+
+   11 instruccion_basica: instrucion_actuador .
+
+    $default  reduce usando la regla 11 (instruccion_basica)
+
+
+State 132
+
+   12 instruccion_basica: instruccion_variable .
+
+    $default  reduce usando la regla 12 (instruccion_basica)
+
+
+State 133
+
+   13 instruccion_basica: instruccion_transicion .
+
+    $default  reduce usando la regla 13 (instruccion_basica)
+
+
+State 134
+
+   34 transicion: ID ':' ID . MOV ID '\n'
+
+    MOV  desplazar e ir al estado 148
+
+
+State 135
+
+    9 inicio_comportamiento: ID '[' '\n' .
+
+    $default  reduce usando la regla 9 (inicio_comportamiento)
+
+
+State 136
+
+   23 alternativa: error '\n' .
+
+    $default  reduce usando la regla 23 (alternativa)
+
+
+State 137
+
+   28 instruccion_variable: ID '=' . expr '\n'
+
+    ID      desplazar e ir al estado 42
+    NUMERO  desplazar e ir al estado 43
+    REAL    desplazar e ir al estado 44
+    '-'     desplazar e ir al estado 47
+    '('     desplazar e ir al estado 63
+
+    expr  ir al estado 149
+
+
+State 138
+
+   21 alternativa: SI expr_logic . '[' '\n' instruccion_basica ']' '\n'
+   22            | SI expr_logic . '[' '\n' instruccion_basica ']' '\n' alternativa_sino
+   78 expr_logic: expr_logic . EQUAL expr
+   79           | expr_logic . NOT_EQUAL expr
+   84           | expr_logic . AND expr_logic
+   85           | expr_logic . OR expr_logic
+
+    AND        desplazar e ir al estado 77
+    OR         desplazar e ir al estado 78
+    EQUAL      desplazar e ir al estado 79
+    NOT_EQUAL  desplazar e ir al estado 80
+    '['        desplazar e ir al estado 150
+
+
+State 139
+
+   26 instrucion_actuador: ACTIVAR ID . '\n'
+
+    '\n'  desplazar e ir al estado 151
+
+
+State 140
+
+   27 instrucion_actuador: DESACTIVAR ID . '\n'
+
+    '\n'  desplazar e ir al estado 152
+
+
+State 141
+
+   29 instruccion_transicion: TRANSICION ID . '\n'
+
+    '\n'  desplazar e ir al estado 153
+
+
+State 142
+
+    7 comportamiento_estado: inicio_comportamiento instruccion_basica ']' . '\n'
+
+    '\n'  desplazar e ir al estado 154
+
+
+State 143
+
+   18 instruccion_basica: instruccion_basica lista_alternativas .
+   20 lista_alternativas: lista_alternativas . alternativa
+
+    error  desplazar e ir al estado 122
+    SI     desplazar e ir al estado 124
+
+    error       [reduce usando la regla 18 (instruccion_basica)]
+    ID          reduce usando la regla 18 (instruccion_basica)
+    SI          [reduce usando la regla 18 (instruccion_basica)]
+    ACTIVAR     reduce usando la regla 18 (instruccion_basica)
+    DESACTIVAR  reduce usando la regla 18 (instruccion_basica)
+    TRANSICION  reduce usando la regla 18 (instruccion_basica)
+    ']'         reduce usando la regla 18 (instruccion_basica)
+
+    alternativa  ir al estado 147
+
+
+State 144
+
+   15 instruccion_basica: instruccion_basica instrucion_actuador .
+
+    $default  reduce usando la regla 15 (instruccion_basica)
+
+
+State 145
+
+   16 instruccion_basica: instruccion_basica instruccion_variable .
+
+    $default  reduce usando la regla 16 (instruccion_basica)
+
+
+State 146
+
+   17 instruccion_basica: instruccion_basica instruccion_transicion .
+
+    $default  reduce usando la regla 17 (instruccion_basica)
+
+
+State 147
+
+   20 lista_alternativas: lista_alternativas alternativa .
+
+    $default  reduce usando la regla 20 (lista_alternativas)
+
+
+State 148
+
+   34 transicion: ID ':' ID MOV . ID '\n'
+
+    ID  desplazar e ir al estado 155
+
+
+State 149
+
+   28 instruccion_variable: ID '=' expr . '\n'
+   70 expr: expr . '+' expr
+   71     | expr . '-' expr
+   72     | expr . '*' expr
+   73     | expr . '/' expr
+   74     | expr . '^' expr
+
+    '+'   desplazar e ir al estado 71
+    '-'   desplazar e ir al estado 72
+    '*'   desplazar e ir al estado 73
+    '/'   desplazar e ir al estado 74
+    '^'   desplazar e ir al estado 75
+    '\n'  desplazar e ir al estado 156
+
+
+State 150
+
+   21 alternativa: SI expr_logic '[' . '\n' instruccion_basica ']' '\n'
+   22            | SI expr_logic '[' . '\n' instruccion_basica ']' '\n' alternativa_sino
+
+    '\n'  desplazar e ir al estado 157
+
+
+State 151
+
+   26 instrucion_actuador: ACTIVAR ID '\n' .
+
+    $default  reduce usando la regla 26 (instrucion_actuador)
+
+
+State 152
+
+   27 instrucion_actuador: DESACTIVAR ID '\n' .
+
+    $default  reduce usando la regla 27 (instrucion_actuador)
+
+
+State 153
+
+   29 instruccion_transicion: TRANSICION ID '\n' .
+
+    $default  reduce usando la regla 29 (instruccion_transicion)
+
+
+State 154
+
+    7 comportamiento_estado: inicio_comportamiento instruccion_basica ']' '\n' .
+
+    $default  reduce usando la regla 7 (comportamiento_estado)
+
+
+State 155
+
+   34 transicion: ID ':' ID MOV ID . '\n'
+
+    '\n'  desplazar e ir al estado 158
+
+
+State 156
+
+   28 instruccion_variable: ID '=' expr '\n' .
+
+    $default  reduce usando la regla 28 (instruccion_variable)
+
+
+State 157
+
+   21 alternativa: SI expr_logic '[' '\n' . instruccion_basica ']' '\n'
+   22            | SI expr_logic '[' '\n' . instruccion_basica ']' '\n' alternativa_sino
+
+    error       desplazar e ir al estado 122
+    ID          desplazar e ir al estado 123
+    SI          desplazar e ir al estado 124
+    ACTIVAR     desplazar e ir al estado 125
+    DESACTIVAR  desplazar e ir al estado 126
+    TRANSICION  desplazar e ir al estado 127
+
+    instruccion_basica      ir al estado 159
+    lista_alternativas      ir al estado 129
+    alternativa             ir al estado 130
+    instrucion_actuador     ir al estado 131
+    instruccion_variable    ir al estado 132
+    instruccion_transicion  ir al estado 133
+
+
+State 158
+
+   34 transicion: ID ':' ID MOV ID '\n' .
+
+    $default  reduce usando la regla 34 (transicion)
+
+
+State 159
+
+   15 instruccion_basica: instruccion_basica . instrucion_actuador
+   16                   | instruccion_basica . instruccion_variable
+   17                   | instruccion_basica . instruccion_transicion
+   18                   | instruccion_basica . lista_alternativas
+   21 alternativa: SI expr_logic '[' '\n' instruccion_basica . ']' '\n'
+   22            | SI expr_logic '[' '\n' instruccion_basica . ']' '\n' alternativa_sino
+
+    error       desplazar e ir al estado 122
+    ID          desplazar e ir al estado 123
+    SI          desplazar e ir al estado 124
+    ACTIVAR     desplazar e ir al estado 125
+    DESACTIVAR  desplazar e ir al estado 126
+    TRANSICION  desplazar e ir al estado 127
+    ']'         desplazar e ir al estado 160
+
+    lista_alternativas      ir al estado 143
+    alternativa             ir al estado 130
+    instrucion_actuador     ir al estado 144
+    instruccion_variable    ir al estado 145
+    instruccion_transicion  ir al estado 146
+
+
+State 160
+
+   21 alternativa: SI expr_logic '[' '\n' instruccion_basica ']' . '\n'
+   22            | SI expr_logic '[' '\n' instruccion_basica ']' . '\n' alternativa_sino
+
+    '\n'  desplazar e ir al estado 161
+
+
+State 161
+
+   21 alternativa: SI expr_logic '[' '\n' instruccion_basica ']' '\n' .
+   22            | SI expr_logic '[' '\n' instruccion_basica ']' '\n' . alternativa_sino
+
+    error  desplazar e ir al estado 162
+    SINO   desplazar e ir al estado 163
+
+    error       [reduce usando la regla 21 (alternativa)]
+    ID          reduce usando la regla 21 (alternativa)
+    SI          reduce usando la regla 21 (alternativa)
+    ACTIVAR     reduce usando la regla 21 (alternativa)
+    DESACTIVAR  reduce usando la regla 21 (alternativa)
+    TRANSICION  reduce usando la regla 21 (alternativa)
+    ']'         reduce usando la regla 21 (alternativa)
+
+    alternativa_sino  ir al estado 164
+
+
+State 162
+
+   25 alternativa_sino: error . '\n'
+
+    '\n'  desplazar e ir al estado 165
+
+
+State 163
+
+   24 alternativa_sino: SINO . '[' instruccion_basica ']' '\n'
+
+    '['  desplazar e ir al estado 166
+
+
+State 164
+
+   22 alternativa: SI expr_logic '[' '\n' instruccion_basica ']' '\n' alternativa_sino .
+
+    $default  reduce usando la regla 22 (alternativa)
+
+
+State 165
+
+   25 alternativa_sino: error '\n' .
+
+    $default  reduce usando la regla 25 (alternativa_sino)
+
+
+State 166
+
+   24 alternativa_sino: SINO '[' . instruccion_basica ']' '\n'
+
+    error       desplazar e ir al estado 122
+    ID          desplazar e ir al estado 123
+    SI          desplazar e ir al estado 124
+    ACTIVAR     desplazar e ir al estado 125
+    DESACTIVAR  desplazar e ir al estado 126
+    TRANSICION  desplazar e ir al estado 127
+
+    instruccion_basica      ir al estado 167
+    lista_alternativas      ir al estado 129
+    alternativa             ir al estado 130
+    instrucion_actuador     ir al estado 131
+    instruccion_variable    ir al estado 132
+    instruccion_transicion  ir al estado 133
+
+
+State 167
+
+   15 instruccion_basica: instruccion_basica . instrucion_actuador
+   16                   | instruccion_basica . instruccion_variable
+   17                   | instruccion_basica . instruccion_transicion
+   18                   | instruccion_basica . lista_alternativas
+   24 alternativa_sino: SINO '[' instruccion_basica . ']' '\n'
+
+    error       desplazar e ir al estado 122
+    ID          desplazar e ir al estado 123
+    SI          desplazar e ir al estado 124
+    ACTIVAR     desplazar e ir al estado 125
+    DESACTIVAR  desplazar e ir al estado 126
+    TRANSICION  desplazar e ir al estado 127
+    ']'         desplazar e ir al estado 168
+
+    lista_alternativas      ir al estado 143
+    alternativa             ir al estado 130
+    instrucion_actuador     ir al estado 144
+    instruccion_variable    ir al estado 145
+    instruccion_transicion  ir al estado 146
+
+
+State 168
+
+   24 alternativa_sino: SINO '[' instruccion_basica ']' . '\n'
+
+    '\n'  desplazar e ir al estado 169
+
+
+State 169
+
+   24 alternativa_sino: SINO '[' instruccion_basica ']' '\n' .
+
+    $default  reduce usando la regla 24 (alternativa_sino)

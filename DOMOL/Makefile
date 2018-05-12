@@ -2,12 +2,14 @@
 
 OBJ = gramatica.o lexico.o 
 ejecucion: gramatica
-	./gramatica entrada.dml
+	./gramatica ejemplo1.dml salida1.txt
+	#./gramatica ejemplo_errores.dml salida_errores.txt
+	#./gramatica ejemplo_errores_calculadora.dml salida_errores_calc.txt
 gramatica.h : gramatica
 	make clean
 
 gramatica : $(OBJ)     
-	g++ -ogramatica $(OBJ)
+	g++ -ogramatica $(OBJ)  SymbolTable.cpp TransitionsTable.cpp
 
 gramatica.o : gramatica.c       
 	g++ -c -ogramatica.o  gramatica.c 

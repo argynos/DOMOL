@@ -1,0 +1,7 @@
+Ficheros de ejemplo para probar el proyecto DOMOL
+
+ejemplo1.dml para probar la fase 2 sin ampliaciones. El fichero es correcto y la salida que debe generar debería ser similar a la de ejemplo.mch aunque no tiene que ser idéntica. Por ejemplo, no es necesario indicar los valores de los estados y de las transiciones, tampoco son necesarios los detalles de estilo,  líneas que subrayan, etc.	
+ejemplo_errores.dml para probar los errores semánticos y sintácticos. En este caso no se debe generar fichero de salida y si se genera su contenido no es importante.
+ejemplo_errores_calculadora.dml para probar los errores semánticos y sintácticos típicos de la calculadora. En este caso no se debe generar fichero de salida y si se genera su contenido no es importante.
+ejemplo_Ampl1.dml y su correspondiente salida (ejemplo_Ampl1.mch) para probar la primera ampliación.
+ejemplo_Ampl2.dml y su correspondiente salida (ejemplo_Ampl2.mch) para probar la segunda ampliación.

@@ -65,13 +65,19 @@ extern int yydebug;
     FLOAT = 275,
     INT = 276,
     BOOL = 277,
-    NUMERO = 278,
-    REAL = 279,
-    TRUE = 280,
-    FALSE = 281,
-    VERDADERO = 282,
-    FALSO = 283,
-    MenosUnario = 284
+    SI = 278,
+    SINO = 279,
+    ACTIVAR = 280,
+    DESACTIVAR = 281,
+    TRANSICION = 282,
+    ENTONCES = 283,
+    NUMERO = 284,
+    REAL = 285,
+    TRUE = 286,
+    FALSE = 287,
+    VERDADERO = 288,
+    FALSO = 289,
+    MenosUnario = 290
   };
 #endif
 
@@ -80,14 +86,14 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 30 "gramatica.y" /* yacc.c:1909  */
+#line 156 "gramatica.y" /* yacc.c:1909  */
 
 	int entero;
 	float real;
 	char id[20];
 	bool booleano;
 
-#line 91 "gramatica.h" /* yacc.c:1909  */
+#line 97 "gramatica.h" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

@@ -18,9 +18,13 @@
 
 using namespace std;
 
-typedef char tipo_cadena[50];
 /**
-  * Tipo de valor del tipo de dato que almacenaremos en la tabla de s?mbolos.
+* vector de chars para montar un string.
+*/
+typedef char tipo_cadena[50];
+
+/**
+  * Tipo de valor del tipo de dato que almacenaremos en la tabla de símbolos.
   */
 union tipo_valor {
     int valor_entero;
@@ -29,8 +33,8 @@ union tipo_valor {
 };
 
 /**
- * Struct que guarda las columnas de la tabla de s?mbolos. Cada variabele es una columna.
- * Si a?adimos un nuevo tipo_datoTS, estamos a?adiendo una nueva fila a la tabla.
+ * Struct que guarda las columnas de la tabla de símbolos. Cada variabele es una columna.
+ * Si añadimos un nuevo tipo_datoTS, estamos añadiendo una nueva fila a la tabla.
  */
 struct tipo_datoTS {
     tipo_cadena nombre;
@@ -38,11 +42,14 @@ struct tipo_datoTS {
     tipo_valor valor;
 };
 
+/**
+* Declaración de la clase SymbolTable.
+*/
 class SymbolTable {
 
 private:
     /**
-     * Contador de inserciones en la tabla de s?mbolos.
+     * Contador de inserciones en la tabla de símbolos.
      */
     int counter;
 
@@ -59,15 +66,14 @@ public:
     SymbolTable();
 
     /**
-     * Busca un elemento en la tabla de s?mbolos por el nombre de tipo cadena dado por par?metro.
-     * Si el elemento existe, retorna el tipo de dato en la variable id, la posici?n en la que se encuentra en
+     * Busca un elemento en la tabla de símbolos por el nombre de tipo cadena dado por parámetro.
+     * Si el elemento existe, retorna el tipo de dato en la variable id, la posición en la que se encuentra en
      * la variable pos, y devuelve true.
      * Si no existe, retorna false.
      *
-     * @param list: tabla de s?mbolos.
      * @param nombre: id a buscar.
      * @param id: elemento encontrado.
-     * @param pos: posici?n en la que se encuentra el elemento encontrado.
+     * @param pos: posición en la que se encuentra el elemento encontrado.
      * @return true si se encuentra, false si no.
      */
     bool buscar(tipo_cadena nombre, tipo_datoTS *&id, int &pos);
@@ -83,16 +89,27 @@ public:
     bool buscar(int value, tipo_datoTS *&id, int type);
 
     /**
-     * Inserta un nuevo dato en la tambla de s?mbolos. Si ya existe y el tipo de dato es igual al que ya hay almacenado
-     * en la tambla de s?mbolos, lo actualiza. Si no existe, lo inserta en la ?ltima posici?n de la tabla.
+     * Inserta un nuevo dato en la tambla de símbolos. Si ya existe y el tipo de dato es igual al que ya hay almacenado
+     * en la tambla de símbolos, lo actualiza. Si no existe, lo inserta en la última posición de la tabla.
      *
-     * @param list: Tabla de s?mbolos.
+     * @param list: Tabla de símbolos.
      * @param id: elemento a insertar.
+     * @return true si se ha insertado, false si no.
      */
     bool insertar(tipo_datoTS *id);
 
+	/**
+	 * Devuelve el tamaño de la tabla de símbolos.
+	 *
+	 * @return tamaño de la tabla de símbolos como entero.
+	 */
     int size();
 
+    /**
+     * Este método monta la tabla de síbolos con el formato adecuado.
+     *
+     * @return string: cadena de caracteres con la tabla de símbolos.
+     */
     string mostrar();
 
 };

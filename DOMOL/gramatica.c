@@ -62,7 +62,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 11 "gramatica.y" /* yacc.c:339  */
+#line 15 "gramatica.y" /* yacc.c:339  */
 
 	#include <iostream>
 	#include <stdio.h>
@@ -290,7 +290,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 164 "gramatica.y" /* yacc.c:355  */
+#line 168 "gramatica.y" /* yacc.c:355  */
 
 	int entero;
 	float real;
@@ -615,16 +615,16 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   195,   195,   196,   201,   204,   207,   208,   211,   213,
-     214,   216,   217,   218,   219,   220,   221,   222,   223,   226,
-     227,   229,   230,   232,   233,   235,   242,   251,   253,   266,
-     269,   273,   274,   277,   328,   332,   334,   337,   338,   341,
-     357,   361,   363,   366,   367,   370,   382,   387,   390,   394,
-     395,   397,   398,   401,   412,   425,   426,   427,   431,   433,
-     436,   437,   440,   441,   442,   446,   447,   448,   467,   468,
-     469,   470,   471,   472,   473,   474,   477,   478,   480,   481,
-     483,   484,   486,   487,   489,   490,   492,   493,   494,   495,
-     496,   497,   498
+       0,   199,   199,   200,   205,   208,   211,   212,   215,   217,
+     218,   220,   221,   222,   223,   224,   225,   226,   227,   230,
+     231,   233,   234,   236,   237,   239,   246,   255,   257,   270,
+     273,   277,   278,   281,   332,   336,   338,   341,   342,   345,
+     361,   365,   367,   370,   371,   374,   386,   391,   394,   398,
+     399,   401,   402,   405,   416,   429,   430,   431,   435,   437,
+     440,   441,   444,   445,   446,   450,   451,   452,   471,   472,
+     473,   474,   475,   476,   477,   478,   481,   482,   484,   485,
+     487,   488,   490,   491,   493,   494,   496,   497,   498,   499,
+     500,   501,   502
 };
 #endif
 
@@ -1537,25 +1537,25 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 195 "gramatica.y" /* yacc.c:1646  */
+#line 199 "gramatica.y" /* yacc.c:1646  */
     {;}
 #line 1543 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 214 "gramatica.y" /* yacc.c:1646  */
+#line 218 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;}
 #line 1549 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 233 "gramatica.y" /* yacc.c:1646  */
+#line 237 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;}
 #line 1555 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 235 "gramatica.y" /* yacc.c:1646  */
+#line 239 "gramatica.y" /* yacc.c:1646  */
     {if (!st->buscar((yyvsp[-1].id), tsaux, pos) || tsaux->tipo!=3){
 											semErr=true;
 				        					tipoErr=8;
@@ -1567,7 +1567,7 @@ yyreduce:
     break;
 
   case 26:
-#line 242 "gramatica.y" /* yacc.c:1646  */
+#line 246 "gramatica.y" /* yacc.c:1646  */
     {if (!st->buscar((yyvsp[-1].id), tsaux, pos) || tsaux->tipo!=3){
 											semErr=true;
 				        					tipoErr=8;
@@ -1579,7 +1579,7 @@ yyreduce:
     break;
 
   case 28:
-#line 253 "gramatica.y" /* yacc.c:1646  */
+#line 257 "gramatica.y" /* yacc.c:1646  */
     {if (!st->buscar((yyvsp[-1].id), tsaux, pos) || tsaux->tipo!=5){
 												semErr=true;
 					        					tipoErr=1;
@@ -1593,7 +1593,7 @@ yyreduce:
     break;
 
   case 33:
-#line 277 "gramatica.y" /* yacc.c:1646  */
+#line 281 "gramatica.y" /* yacc.c:1646  */
     {
 										if (st->buscar((yyvsp[-5].id), tsaux, pos)){
 											semErr=true;
@@ -1649,13 +1649,13 @@ yyreduce:
     break;
 
   case 34:
-#line 328 "gramatica.y" /* yacc.c:1646  */
+#line 332 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;real=false;semErr=false;}
 #line 1655 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 341 "gramatica.y" /* yacc.c:1646  */
+#line 345 "gramatica.y" /* yacc.c:1646  */
     {if (!st->buscar((yyvsp[-1].id), tsaux, pos)){
 						codigo=4; 
 						construirTipoDato((yyvsp[-1].id), estados);
@@ -1676,13 +1676,13 @@ yyreduce:
     break;
 
   case 40:
-#line 357 "gramatica.y" /* yacc.c:1646  */
+#line 361 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;real=false;semErr=false;}
 #line 1682 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 370 "gramatica.y" /* yacc.c:1646  */
+#line 374 "gramatica.y" /* yacc.c:1646  */
     {if (!st->buscar((yyvsp[-1].id), tsaux, pos)){
 						codigo=3; 
 						construirTipoDato((yyvsp[-1].id), 0);
@@ -1699,19 +1699,19 @@ yyreduce:
     break;
 
   case 46:
-#line 382 "gramatica.y" /* yacc.c:1646  */
+#line 386 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;real=false;semErr=false;}
 #line 1705 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 398 "gramatica.y" /* yacc.c:1646  */
+#line 402 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;real=false;semErr=false;}
 #line 1711 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 53:
-#line 401 "gramatica.y" /* yacc.c:1646  */
+#line 405 "gramatica.y" /* yacc.c:1646  */
     {if (!st->buscar((yyvsp[0].id), tsaux, pos)){
 							construirTipoDato((yyvsp[0].id), 0);
 							real=false;
@@ -1727,7 +1727,7 @@ yyreduce:
     break;
 
   case 54:
-#line 412 "gramatica.y" /* yacc.c:1646  */
+#line 416 "gramatica.y" /* yacc.c:1646  */
     {if (!st->buscar((yyvsp[0].id), tsaux, pos)){
 							construirTipoDato((yyvsp[0].id), 0);
 							real=false;
@@ -1743,55 +1743,55 @@ yyreduce:
     break;
 
   case 55:
-#line 425 "gramatica.y" /* yacc.c:1646  */
+#line 429 "gramatica.y" /* yacc.c:1646  */
     {codigo=10;}
 #line 1749 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 426 "gramatica.y" /* yacc.c:1646  */
+#line 430 "gramatica.y" /* yacc.c:1646  */
     {codigo=11;}
 #line 1755 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 427 "gramatica.y" /* yacc.c:1646  */
+#line 431 "gramatica.y" /* yacc.c:1646  */
     {codigo=12;}
 #line 1761 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 440 "gramatica.y" /* yacc.c:1646  */
+#line 444 "gramatica.y" /* yacc.c:1646  */
     {construirTipoDato((yyvsp[-3].id), (yyvsp[-1].real));real=false;semErr=false;}
 #line 1767 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 441 "gramatica.y" /* yacc.c:1646  */
+#line 445 "gramatica.y" /* yacc.c:1646  */
     {construirTipoDato((yyvsp[-3].id), (yyvsp[-1].booleano));real=false;semErr=false;}
 #line 1773 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 442 "gramatica.y" /* yacc.c:1646  */
+#line 446 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;real=false;semErr=false;}
 #line 1779 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 446 "gramatica.y" /* yacc.c:1646  */
+#line 450 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[0].entero); codigo=0;}
 #line 1785 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 447 "gramatica.y" /* yacc.c:1646  */
+#line 451 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[0].real); codigo=1;}
 #line 1791 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 448 "gramatica.y" /* yacc.c:1646  */
+#line 452 "gramatica.y" /* yacc.c:1646  */
     {if(!st->buscar((yyvsp[0].id), tsaux, pos)){
                         semErr=true;
                         tipoErr=1;
@@ -1815,151 +1815,151 @@ yyreduce:
     break;
 
   case 68:
-#line 467 "gramatica.y" /* yacc.c:1646  */
+#line 471 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=-(yyvsp[0].real);}
 #line 1821 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 468 "gramatica.y" /* yacc.c:1646  */
+#line 472 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[-2].real)+(yyvsp[0].real);}
 #line 1827 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 70:
-#line 469 "gramatica.y" /* yacc.c:1646  */
+#line 473 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[-2].real)-(yyvsp[0].real);}
 #line 1833 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 71:
-#line 470 "gramatica.y" /* yacc.c:1646  */
+#line 474 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[-2].real)*(yyvsp[0].real);}
 #line 1839 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 471 "gramatica.y" /* yacc.c:1646  */
+#line 475 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[-2].real)/ (yyvsp[0].real);}
 #line 1845 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 472 "gramatica.y" /* yacc.c:1646  */
+#line 476 "gramatica.y" /* yacc.c:1646  */
     {if(real) { semErr = true; tipoErr = 3;} else {(yyval.real)=(int)(yyvsp[-2].real)%(int)(yyvsp[0].real);}}
 #line 1851 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 473 "gramatica.y" /* yacc.c:1646  */
+#line 477 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=pow((yyvsp[-2].real), (yyvsp[0].real));}
 #line 1857 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 75:
-#line 474 "gramatica.y" /* yacc.c:1646  */
+#line 478 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[-1].real);}
 #line 1863 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 76:
-#line 477 "gramatica.y" /* yacc.c:1646  */
+#line 481 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=true; codigo=2;}
 #line 1869 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 77:
-#line 478 "gramatica.y" /* yacc.c:1646  */
+#line 482 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=false;codigo=2;}
 #line 1875 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 78:
-#line 480 "gramatica.y" /* yacc.c:1646  */
+#line 484 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)==(yyvsp[0].real);codigo=2;}
 #line 1881 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 79:
-#line 481 "gramatica.y" /* yacc.c:1646  */
+#line 485 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)!=(yyvsp[0].real);codigo=2;}
 #line 1887 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 80:
-#line 483 "gramatica.y" /* yacc.c:1646  */
+#line 487 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].booleano)==(yyvsp[0].real);codigo=2;}
 #line 1893 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 81:
-#line 484 "gramatica.y" /* yacc.c:1646  */
+#line 488 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].booleano)!=(yyvsp[0].real);codigo=2;}
 #line 1899 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 82:
-#line 486 "gramatica.y" /* yacc.c:1646  */
+#line 490 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)==(yyvsp[0].booleano);codigo=2;}
 #line 1905 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 83:
-#line 487 "gramatica.y" /* yacc.c:1646  */
+#line 491 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)!=(yyvsp[0].booleano);codigo=2;}
 #line 1911 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 84:
-#line 489 "gramatica.y" /* yacc.c:1646  */
+#line 493 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].booleano)==(yyvsp[0].booleano);codigo=2;}
 #line 1917 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 85:
-#line 490 "gramatica.y" /* yacc.c:1646  */
+#line 494 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].booleano)!=(yyvsp[0].booleano);codigo=2;}
 #line 1923 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 86:
-#line 492 "gramatica.y" /* yacc.c:1646  */
+#line 496 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)>(yyvsp[0].real);codigo=2;}
 #line 1929 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 87:
-#line 493 "gramatica.y" /* yacc.c:1646  */
+#line 497 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)>=(yyvsp[0].real);codigo=2;}
 #line 1935 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 88:
-#line 494 "gramatica.y" /* yacc.c:1646  */
+#line 498 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)<(yyvsp[0].real);codigo=2;}
 #line 1941 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 89:
-#line 495 "gramatica.y" /* yacc.c:1646  */
+#line 499 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)<=(yyvsp[0].real);codigo=2;}
 #line 1947 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 90:
-#line 496 "gramatica.y" /* yacc.c:1646  */
+#line 500 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].booleano)&&(yyvsp[0].booleano);codigo=2;}
 #line 1953 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 91:
-#line 497 "gramatica.y" /* yacc.c:1646  */
+#line 501 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].booleano)||(yyvsp[0].booleano);codigo=2;}
 #line 1959 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 92:
-#line 498 "gramatica.y" /* yacc.c:1646  */
+#line 502 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-1].booleano);codigo=2;}
 #line 1965 "gramatica.c" /* yacc.c:1646  */
     break;
@@ -2193,7 +2193,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 501 "gramatica.y" /* yacc.c:1906  */
+#line 505 "gramatica.y" /* yacc.c:1906  */
 
 
 int main(int argc, char *argv[]) {

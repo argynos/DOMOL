@@ -24,33 +24,48 @@ typedef char tipo_cadena[50];
 struct tipo_datoTT {
     tipo_cadena nombre;
 };
+
 /**
  * Declaración de la clase TransitionsTable.
  *
  */
 class TransitionsTable {
 
-private:
-
-
-
 
 public:
+    
     /**
-    * Tabla de transiciones y Tabla de estados.
+    * Tabla de estados
     */
     tipo_datoTT *tablaEstados[20];
+
+    /**
+    * Tabla de transiciones 
+    */
     tipo_datoTT *tablaTransciones[20][20];
 
-    void insertarTransicion (tipo_datoTT *id, int i, int j);
-    void insertarEstado (tipo_datoTT *id, int i);
     /**
      * Constructor por defecto del sistema.
-     * Inicializa la tabla de transiciones con entradas a null y a '      '.
+     * Inicializa la tabla de transiciones con entradas a null y a ''.
      */
     TransitionsTable();
 
-   
+	/**
+	* Inserta una nueva transición en la tabla de transiciones.
+	*
+	* @param id: tipo de  dato a insertar en la tabla de transiciones.
+	* @param i: fila.
+	* @param j: columna.
+	*/
+    void insertarTransicion (tipo_datoTT *id, int i, int j);
+
+    /**
+	* Inserta un nuevo estado en la tabla de estados.
+	*
+	* @param id: tipo de estado a insertar en la tabla de estados.
+	* @param i: posición en la que insertar.
+	*/
+    void insertarEstado (tipo_datoTT *id, int i);
 
     /**
      * This method shows the transition table of the system

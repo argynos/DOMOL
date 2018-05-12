@@ -18,10 +18,11 @@
 #include <sstream>
 #include <iomanip>
 
-
-
 using namespace std;
 
+/**
+* Implementación de la clase TransitionsTable
+*/
 
 TransitionsTable::TransitionsTable() {
     tipo_datoTT *aux = new tipo_datoTT;
@@ -33,9 +34,11 @@ TransitionsTable::TransitionsTable() {
         }
     }
 }
+
 void TransitionsTable::insertarTransicion(tipo_datoTT *id, int i, int j){
     this->tablaTransciones[i][j]=id;
 }
+
 void TransitionsTable::insertarEstado (tipo_datoTT *id, int estado){
     this->tablaEstados[estado]=id;
 }

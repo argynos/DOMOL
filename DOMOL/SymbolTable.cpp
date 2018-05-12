@@ -19,6 +19,10 @@
 
 using namespace std;
 
+/**
+* Implementación de la clase SymbolTable
+*/
+
 SymbolTable::SymbolTable() {
     this->counter = 0;
 }

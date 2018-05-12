@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.2.  */
+/* A Bison parser, made by GNU Bison 3.0.4.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "3.0.2"
+#define YYBISON_VERSION "3.0.4"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -167,8 +167,8 @@
     * Vuelca el contenido de la tabla de símbolos al fichero de salida.
     */
 	void mostrar() {
-		fprintf(yyout, "TABLA DE SIMBOLOS\n=================\n");
-        fprintf(yyout, "Nombre\t\t\tTipo\t\tValor\n=============================================\n");
+		fprintf(yyout, "\t\t\t\t\tTABLA DE SIMBOLOS\n_________________________________________________________\n");
+        
     	fprintf(yyout, st->mostrar().c_str());
     	fprintf(yyout, "TABLA DE TRANSICIONES\n=====================\n");
     	fprintf(yyout, tt->mostrar(estados).c_str());
@@ -287,7 +287,7 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE YYSTYPE;
+
 union YYSTYPE
 {
 #line 164 "gramatica.y" /* yacc.c:355  */
@@ -299,6 +299,8 @@ union YYSTYPE
 
 #line 301 "gramatica.c" /* yacc.c:355  */
 };
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -312,7 +314,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 316 "gramatica.c" /* yacc.c:358  */
+#line 318 "gramatica.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -1537,19 +1539,19 @@ yyreduce:
         case 2:
 #line 195 "gramatica.y" /* yacc.c:1646  */
     {;}
-#line 1541 "gramatica.c" /* yacc.c:1646  */
+#line 1543 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 10:
 #line 214 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;}
-#line 1547 "gramatica.c" /* yacc.c:1646  */
+#line 1549 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 24:
 #line 233 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;}
-#line 1553 "gramatica.c" /* yacc.c:1646  */
+#line 1555 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 25:
@@ -1561,7 +1563,7 @@ yyreduce:
 					                		errorSemantico();
 										}	
 					}
-#line 1565 "gramatica.c" /* yacc.c:1646  */
+#line 1567 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 26:
@@ -1573,7 +1575,7 @@ yyreduce:
 					                		errorSemantico();
 										}	
 					}
-#line 1577 "gramatica.c" /* yacc.c:1646  */
+#line 1579 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 28:
@@ -1587,7 +1589,7 @@ yyreduce:
 						                		errorSemantico();
 											}
 									}
-#line 1591 "gramatica.c" /* yacc.c:1646  */
+#line 1593 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 33:
@@ -1643,13 +1645,13 @@ yyreduce:
 	                    					errorSemantico();
 										}
 									}
-#line 1647 "gramatica.c" /* yacc.c:1646  */
+#line 1649 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 34:
 #line 328 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;real=false;semErr=false;}
-#line 1653 "gramatica.c" /* yacc.c:1646  */
+#line 1655 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 39:
@@ -1670,13 +1672,13 @@ yyreduce:
                         errorSemantico();
 					}		
 					}
-#line 1674 "gramatica.c" /* yacc.c:1646  */
+#line 1676 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 40:
 #line 357 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;real=false;semErr=false;}
-#line 1680 "gramatica.c" /* yacc.c:1646  */
+#line 1682 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 45:
@@ -1693,19 +1695,19 @@ yyreduce:
                         errorSemantico();
 					}
 					}
-#line 1697 "gramatica.c" /* yacc.c:1646  */
+#line 1699 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 46:
 #line 382 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;real=false;semErr=false;}
-#line 1703 "gramatica.c" /* yacc.c:1646  */
+#line 1705 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 52:
 #line 398 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;real=false;semErr=false;}
-#line 1709 "gramatica.c" /* yacc.c:1646  */
+#line 1711 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 53:
@@ -1721,7 +1723,7 @@ yyreduce:
 	                        errorSemantico();
 	                    }
 					}
-#line 1725 "gramatica.c" /* yacc.c:1646  */
+#line 1727 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 54:
@@ -1737,55 +1739,55 @@ yyreduce:
 	                        errorSemantico();
 	                    }
 					}
-#line 1741 "gramatica.c" /* yacc.c:1646  */
+#line 1743 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 55:
 #line 425 "gramatica.y" /* yacc.c:1646  */
     {codigo=10;}
-#line 1747 "gramatica.c" /* yacc.c:1646  */
+#line 1749 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 56:
 #line 426 "gramatica.y" /* yacc.c:1646  */
     {codigo=11;}
-#line 1753 "gramatica.c" /* yacc.c:1646  */
+#line 1755 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 57:
 #line 427 "gramatica.y" /* yacc.c:1646  */
     {codigo=12;}
-#line 1759 "gramatica.c" /* yacc.c:1646  */
+#line 1761 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 62:
 #line 440 "gramatica.y" /* yacc.c:1646  */
     {construirTipoDato((yyvsp[-3].id), (yyvsp[-1].real));real=false;semErr=false;}
-#line 1765 "gramatica.c" /* yacc.c:1646  */
+#line 1767 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 63:
 #line 441 "gramatica.y" /* yacc.c:1646  */
     {construirTipoDato((yyvsp[-3].id), (yyvsp[-1].booleano));real=false;semErr=false;}
-#line 1771 "gramatica.c" /* yacc.c:1646  */
+#line 1773 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 64:
 #line 442 "gramatica.y" /* yacc.c:1646  */
     {yyerrok;real=false;semErr=false;}
-#line 1777 "gramatica.c" /* yacc.c:1646  */
+#line 1779 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 65:
 #line 446 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[0].entero); codigo=0;}
-#line 1783 "gramatica.c" /* yacc.c:1646  */
+#line 1785 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 66:
 #line 447 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[0].real); codigo=1;}
-#line 1789 "gramatica.c" /* yacc.c:1646  */
+#line 1791 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 67:
@@ -1809,161 +1811,161 @@ yyreduce:
 			(yyval.real)=tsaux->valor.valor_logico;codigo=2;}
 	
 		};}
-#line 1813 "gramatica.c" /* yacc.c:1646  */
+#line 1815 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 68:
 #line 467 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=-(yyvsp[0].real);}
-#line 1819 "gramatica.c" /* yacc.c:1646  */
+#line 1821 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 69:
 #line 468 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[-2].real)+(yyvsp[0].real);}
-#line 1825 "gramatica.c" /* yacc.c:1646  */
+#line 1827 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 70:
 #line 469 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[-2].real)-(yyvsp[0].real);}
-#line 1831 "gramatica.c" /* yacc.c:1646  */
+#line 1833 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 71:
 #line 470 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[-2].real)*(yyvsp[0].real);}
-#line 1837 "gramatica.c" /* yacc.c:1646  */
+#line 1839 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 72:
 #line 471 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[-2].real)/ (yyvsp[0].real);}
-#line 1843 "gramatica.c" /* yacc.c:1646  */
+#line 1845 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 73:
 #line 472 "gramatica.y" /* yacc.c:1646  */
     {if(real) { semErr = true; tipoErr = 3;} else {(yyval.real)=(int)(yyvsp[-2].real)%(int)(yyvsp[0].real);}}
-#line 1849 "gramatica.c" /* yacc.c:1646  */
+#line 1851 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 74:
 #line 473 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=pow((yyvsp[-2].real), (yyvsp[0].real));}
-#line 1855 "gramatica.c" /* yacc.c:1646  */
+#line 1857 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 75:
 #line 474 "gramatica.y" /* yacc.c:1646  */
     {(yyval.real)=(yyvsp[-1].real);}
-#line 1861 "gramatica.c" /* yacc.c:1646  */
+#line 1863 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 76:
 #line 477 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=true; codigo=2;}
-#line 1867 "gramatica.c" /* yacc.c:1646  */
+#line 1869 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 77:
 #line 478 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=false;codigo=2;}
-#line 1873 "gramatica.c" /* yacc.c:1646  */
+#line 1875 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 78:
 #line 480 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)==(yyvsp[0].real);codigo=2;}
-#line 1879 "gramatica.c" /* yacc.c:1646  */
+#line 1881 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 79:
 #line 481 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)!=(yyvsp[0].real);codigo=2;}
-#line 1885 "gramatica.c" /* yacc.c:1646  */
+#line 1887 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 80:
 #line 483 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].booleano)==(yyvsp[0].real);codigo=2;}
-#line 1891 "gramatica.c" /* yacc.c:1646  */
+#line 1893 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 81:
 #line 484 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].booleano)!=(yyvsp[0].real);codigo=2;}
-#line 1897 "gramatica.c" /* yacc.c:1646  */
+#line 1899 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 82:
 #line 486 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)==(yyvsp[0].booleano);codigo=2;}
-#line 1903 "gramatica.c" /* yacc.c:1646  */
+#line 1905 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 83:
 #line 487 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)!=(yyvsp[0].booleano);codigo=2;}
-#line 1909 "gramatica.c" /* yacc.c:1646  */
+#line 1911 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 84:
 #line 489 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].booleano)==(yyvsp[0].booleano);codigo=2;}
-#line 1915 "gramatica.c" /* yacc.c:1646  */
+#line 1917 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 85:
 #line 490 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].booleano)!=(yyvsp[0].booleano);codigo=2;}
-#line 1921 "gramatica.c" /* yacc.c:1646  */
+#line 1923 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 86:
 #line 492 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)>(yyvsp[0].real);codigo=2;}
-#line 1927 "gramatica.c" /* yacc.c:1646  */
+#line 1929 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 87:
 #line 493 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)>=(yyvsp[0].real);codigo=2;}
-#line 1933 "gramatica.c" /* yacc.c:1646  */
+#line 1935 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 88:
 #line 494 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)<(yyvsp[0].real);codigo=2;}
-#line 1939 "gramatica.c" /* yacc.c:1646  */
+#line 1941 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 89:
 #line 495 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].real)<=(yyvsp[0].real);codigo=2;}
-#line 1945 "gramatica.c" /* yacc.c:1646  */
+#line 1947 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 90:
 #line 496 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].booleano)&&(yyvsp[0].booleano);codigo=2;}
-#line 1951 "gramatica.c" /* yacc.c:1646  */
+#line 1953 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 91:
 #line 497 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-2].booleano)||(yyvsp[0].booleano);codigo=2;}
-#line 1957 "gramatica.c" /* yacc.c:1646  */
+#line 1959 "gramatica.c" /* yacc.c:1646  */
     break;
 
   case 92:
 #line 498 "gramatica.y" /* yacc.c:1646  */
     {(yyval.booleano)=(yyvsp[-1].booleano);codigo=2;}
-#line 1963 "gramatica.c" /* yacc.c:1646  */
+#line 1965 "gramatica.c" /* yacc.c:1646  */
     break;
 
 
-#line 1967 "gramatica.c" /* yacc.c:1646  */
+#line 1969 "gramatica.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

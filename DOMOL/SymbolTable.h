@@ -94,5 +94,6 @@ public:
     int size();
 
     string mostrar();
+
 };
 #endif /* SYMBOLTABLE_H_ */

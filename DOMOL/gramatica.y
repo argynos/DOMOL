@@ -112,8 +112,8 @@
     * Vuelca el contenido de la tabla de símbolos al fichero de salida.
     */
 	void mostrar() {
-		fprintf(yyout, "TABLA DE SIMBOLOS\n=================\n");
-        fprintf(yyout, "Nombre\t\t\tTipo\t\tValor\n=============================================\n");
+		fprintf(yyout, "\t\t\t\t\tTABLA DE SIMBOLOS\n_________________________________________________________\n");
+        
     	fprintf(yyout, st->mostrar().c_str());
     	fprintf(yyout, "TABLA DE TRANSICIONES\n=====================\n");
     	fprintf(yyout, tt->mostrar(estados).c_str());

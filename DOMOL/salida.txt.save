@@ -1,6 +1,0 @@
-	Nombre	Tipo		Valor
-	==============================
-		temp_basica		entero		20
-	temp_verano		real		22
-	temp_invierno		real		18.1818
-	verano		lógico		falso

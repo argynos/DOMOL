@@ -1,3 +1,5 @@
+TABLA DE SIMBOLOS
+=================
 Nombre			Tipo		Valor
 =============================================
 temp_basica		entero		20
@@ -24,3 +26,12 @@ apagar_airea		transicion		4
 acabar1		transicion		5
 acabar2		transicion		6
 acabar3		transicion		7
+TABLA DE TRANSICIONES
+=====================
+               Inicial        Final          Todo_OFF       C_ON           AC_ON          
+               ===========================================================================
+Inicial       |                              iniciar                                                                                                                                                                                                                                                                       
+Final         |                                                                                                                                                                                                                                                                                                            
+Todo_OFF      |               acabar1                       encender_calef encender_airea                                                                                                                                                                                                                                  
+C_ON          |               acabar2        apagar_calef                                                                                                                                                                                                                                                                  
+AC_ON         |               acabar3        apagar_airea                                                                                                                                                                                                                                                                  

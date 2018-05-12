@@ -86,7 +86,7 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 156 "gramatica.y" /* yacc.c:1909  */
+#line 164 "gramatica.y" /* yacc.c:1909  */
 
 	int entero;
 	float real;

@@ -39,6 +39,11 @@
 	SymbolTable *st = new SymbolTable();
 	tipo_datoTS *tsaux = new tipo_datoTS;
 	tipo_datoTS *tserr = new tipo_datoTS;
+	
+	TransitionsTable *tt = new TransitionsTable();
+	tipo_datoTT *ttaux;
+	
+
 	int pos = 0;
 	int estados=0;
 	int transiciones=0;
@@ -107,8 +112,11 @@
     * Vuelca el contenido de la tabla de símbolos al fichero de salida.
     */
 	void mostrar() {
+		fprintf(yyout, "TABLA DE SIMBOLOS\n=================\n");
         fprintf(yyout, "Nombre\t\t\tTipo\t\tValor\n=============================================\n");
     	fprintf(yyout, st->mostrar().c_str());
+    	fprintf(yyout, "TABLA DE TRANSICIONES\n=====================\n");
+    	fprintf(yyout, tt->mostrar(estados).c_str());
 	}
    
     /**
@@ -298,6 +306,9 @@ transicion:  ID ':' ID MOV ID  '\n' {
 											}else{
 												codigo=5; 
 												construirTipoDato($1, transiciones); 
+												ttaux= new tipo_datoTT;
+												strcpy(ttaux->nombre,$1);
+												tt->insertarTransicion(ttaux, primero, segundo);
 												transiciones++;
 												real=false;
 												semErr=false;
@@ -329,7 +340,10 @@ lista_estados: 	lista_estados estado
 
 estado: ID '\n' {if (!st->buscar($1, tsaux, pos)){
 						codigo=4; 
-						construirTipoDato($1, estados); 
+						construirTipoDato($1, estados);
+						ttaux= new tipo_datoTT;
+						strcpy(ttaux->nombre,$1);
+						tt->insertarEstado(ttaux, estados); 
 						estados++;
 						real=false;
 						semErr=false;

@@ -43,14 +43,18 @@
 	SymbolTable *st = new SymbolTable();
 	tipo_datoTS *tsaux = new tipo_datoTS;
 	tipo_datoTS *tserr = new tipo_datoTS;
+	tipo_cadena aux ="";
 	
 	TransitionsTable *tt = new TransitionsTable();
 	tipo_datoTT *ttaux;
-	
+	tipo_datoTT *origen = new tipo_datoTT;
+	tipo_datoTT *destino = new tipo_datoTT;
 
 	int pos = 0;
 	int estados=0;
 	int transiciones=0;
+	int casos=0;
+	int n_estados=1;
 
     /**
     * Control de errores semánticos según el tipo.
@@ -93,9 +97,19 @@
  	if(tipoErr==11) {
         printf("Error semántico en la línea %d. %s no es un estado de destino valido.\n", n_lines, tserr->nombre);
     }
-        
+    if(tipoErr==12) {
+        printf("Error semántico en global. Existen estados inacesibles.\n");
+    }
+    
+    if(tipoErr==13) {
+        printf("Error semántico en la línea %d. La transicion %s no tiene al estado %s como estado inicial.\n", n_lines, tserr->nombre, aux);
+    }
+    if(tipoErr==14) {
+    		printf("Error semántico en la línea %d. %s no es un estado. \n", n_lines+1, tserr->nombre);
+    }    
         tipoErr=0;
         semErr=false;
+        real=false;
 
 	}
 	
@@ -109,6 +123,9 @@
         else
             printf("Error sintáctico en la línea %d.\n", n_lines);
         codigo = 0;
+        tipoErr=0;
+        semErr=false;
+        real=false;
 	}
 
 	
@@ -117,10 +134,9 @@
     */
 	void mostrar() {
 		fprintf(yyout, "\t\t\t\t\tTABLA DE SIMBOLOS\n_________________________________________________________\n");
-        
     	fprintf(yyout, st->mostrar().c_str());
     	fprintf(yyout, "TABLA DE TRANSICIONES\n=====================\n");
-    	fprintf(yyout, tt->mostrar(estados).c_str());
+    	fprintf(yyout, tt->mostrar(estados, casos).c_str());
 	}
    
     /**
@@ -160,6 +176,7 @@
 	}else{
 		errorSemantico();
 	}
+	codigo = 0;
     }
 
 %}
@@ -173,7 +190,7 @@
 }
 
 %start programa
-%token VARIABLES SENSORES ACTUADORES ESTADOS TRANSICIONES COMPORTAMIENTO MOV
+%token VARIABLES SENSORES ACTUADORES ESTADOS TRANSICIONES COMPORTAMIENTO MOV CASOS CASO
 %token HT HET LT LET AND OR NOT EQUAL NOT_EQUAL
 %token <id> ID 
 %token <id> FLOAT INT BOOL SI SINO ACTIVAR DESACTIVAR  TRANSICION ENTONCES
@@ -195,10 +212,51 @@
 
 %%
 
-
 programa: {;}
-	| zona_variables zona_sensores zona_actuadores zona_estados zona_transiciones zona_comportamiento
+	| zona_variables zona_sensores zona_actuadores zona_estados zona_transiciones zona_comportamiento zona_casos { if (!tt->conectividad(estados)){
+																										semErr=true;
+																			        					tipoErr=12;
+																			        					errorSemantico();
+																										}
+																										}
 	;
+
+/* CONJUNTO DE PRODUCIONES PARA LA ZONA DE CASOS DE USO */
+
+zona_casos: inicio_zona_casos lista_casos
+			;
+inicio_zona_casos: CASOS '\n'
+				;
+lista_casos: caso_uso
+			| lista_casos caso_uso
+			;
+caso_uso : CASO ID ':' l_estados '\n' { origen = new tipo_datoTT; strcpy(origen->nombre,$2); tt->insertarCaso(origen, destino, casos, 0); casos++; n_estados=1; }
+			|error '\n' {yyerrok;}
+			;
+l_estados: ID {if (!st->buscar($1, tsaux, pos) || tsaux->tipo!=4){
+											semErr=true;
+				        					tipoErr=14;
+				        					strcpy(tserr->nombre,$1);
+					                		errorSemantico();
+										}else{
+											destino = new tipo_datoTT; 
+											strcpy(destino->nombre,$1);
+										}
+										}
+		| l_estados ';' ID  {if (!st->buscar($3, tsaux, pos) || tsaux->tipo!=4){
+											semErr=true;
+				        					tipoErr=14;
+				        					strcpy(tserr->nombre,$3);
+					                		errorSemantico();
+										}else{
+											origen = new tipo_datoTT; 
+											strcpy(origen->nombre,destino->nombre);
+											destino = new tipo_datoTT; 
+											strcpy(destino->nombre,$3);
+											tt->insertarCaso(origen, destino, casos, n_estados); 
+											n_estados++;
+										}
+										}
 
 /* CONJUNTO DE PRODUCIONES PARA LA ZONA DE COMPORTAMIENTO */
 
@@ -214,7 +272,7 @@ lista_comportamientos: comportamiento_estado
 
 comportamiento_estado: inicio_comportamiento instruccion_basica ']' '\n' 
 					;	
-inicio_comportamiento: ID '[' '\n' 
+inicio_comportamiento: ID '[' '\n' {strcpy(aux, $1);}
 					| error '\n' {yyerrok;}
 					;
 instruccion_basica: instrucion_actuador 
@@ -224,7 +282,6 @@ instruccion_basica: instrucion_actuador
 					| instruccion_basica instrucion_actuador 
 					| instruccion_basica instruccion_variable
 					| instruccion_basica instruccion_transicion	
-					| instruccion_basica lista_alternativas				
 					;
 
 lista_alternativas: alternativa 
@@ -261,6 +318,13 @@ instruccion_transicion : TRANSICION ID '\n'{if (!st->buscar($2, tsaux, pos) || t
 					        					tipoErr=9;
 					        					strcpy(tserr->nombre,$2);
 						                		errorSemantico();
+											}else{
+												if (!tt->test5(aux, $2, estados)){
+													semErr=true;
+						        					tipoErr=13;
+						        					strcpy(tserr->nombre,$2);
+						                			errorSemantico();
+												}
 											}
 									} 
 					;
@@ -314,8 +378,6 @@ transicion:  ID ':' ID MOV ID  '\n' {
 												strcpy(ttaux->nombre,$1);
 												tt->insertarTransicion(ttaux, primero, segundo);
 												transiciones++;
-												real=false;
-												semErr=false;
 											}
 										}else if (!uno){
 											semErr=true;
@@ -329,7 +391,7 @@ transicion:  ID ':' ID MOV ID  '\n' {
 	                    					errorSemantico();
 										}
 									}
-		| error '\n' {yyerrok;real=false;semErr=false;}
+		| error '\n' {yyerrok;}
 		;
 
 /* CONJUNTO DE PRODUCIONES PARA LA ZONA DE ESTADOS */
@@ -349,8 +411,6 @@ estado: ID '\n' {if (!st->buscar($1, tsaux, pos)){
 						strcpy(ttaux->nombre,$1);
 						tt->insertarEstado(ttaux, estados); 
 						estados++;
-						real=false;
-						semErr=false;
 					}else{
 						semErr=true;
                         tipoErr=5;
@@ -358,7 +418,7 @@ estado: ID '\n' {if (!st->buscar($1, tsaux, pos)){
                         errorSemantico();
 					}		
 					}
-		| error '\n' {yyerrok;real=false;semErr=false;} 
+		| error '\n' {yyerrok;} 
 		;
 
 /* CONJUNTO DE PRODUCIONES PARA LA ZONA DE ACTUADORES */
@@ -374,8 +434,6 @@ lista_actuadores : 	lista_actuadores actuador
 actuador: ID '\n' {if (!st->buscar($1, tsaux, pos)){
 						codigo=3; 
 						construirTipoDato($1, 0);
-						real=false;
-						semErr=false;
 					}else{
 						semErr=true;
                         tipoErr=5;
@@ -383,7 +441,7 @@ actuador: ID '\n' {if (!st->buscar($1, tsaux, pos)){
                         errorSemantico();
 					}
 					}
-		| error '\n' {yyerrok;real=false;semErr=false;}
+		| error '\n' {yyerrok;}
 		;					
 
 
@@ -399,13 +457,11 @@ lista_sensores: lista_sensores linea_sensores
 			|linea_sensores 
 			;
 linea_sensores: sensores '\n'
-			| error '\n' {yyerrok;real=false;semErr=false;}
+			| error '\n' {yyerrok;}
 			;		
 
 sensores:  tipo ID {if (!st->buscar($2, tsaux, pos)){
 							construirTipoDato($2, 0);
-							real=false;
-							semErr=false;
 						}else{
 							semErr=true;
 	                        tipoErr=6;
@@ -415,8 +471,6 @@ sensores:  tipo ID {if (!st->buscar($2, tsaux, pos)){
 					}
 		| sensores ',' ID  {if (!st->buscar($3, tsaux, pos)){
 							construirTipoDato($3, 0);
-							real=false;
-							semErr=false;
 						}else{
 							semErr=true;
 	                        tipoErr=6;
@@ -443,7 +497,7 @@ lista_variables:  lista_variables variable
 
 variable: 	ID '=' expr '\n' {construirTipoDato($1, $3);real=false;semErr=false;}
 		| ID '=' expr_logic '\n' {construirTipoDato($1, $3);real=false;semErr=false;} 
-		| error '\n' {yyerrok;real=false;semErr=false;}
+		| error '\n' {yyerrok;}
 		;
 
 

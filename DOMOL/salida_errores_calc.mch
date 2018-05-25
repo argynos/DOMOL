@@ -3,10 +3,12 @@ _________________________________________________________
 ========================================================|
 Nombre			|	Tipo			|	Valor			|
 ========================================================|
-temp_basica		|	entero			|	20				|	
-temp_verano		|	real			|	22.00			|	
-temp_invierno	|	real			|	18.18			|	
-verano			|	lógico			|	falso			|	
+A				|	entero			|	1				|	
+Bb				|	real			|	25.40			|	
+Cc				|	lógico			|	falso			|	
+_logico			|	lógico			|	falso			|	
+X				|	entero			|	2				|	
+aa				|	entero			|	2				|	
 T1				|	sensor			|	real			|	
 T2				|	entero			|	0				|	
 Reloj			|	sensor			|	entero			|	

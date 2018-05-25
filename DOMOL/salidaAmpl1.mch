@@ -38,3 +38,18 @@ Final         |
 Todo_OFF      |               acabar1                       encender_calef encender_airea                                                                                                                                                                                                                                  
 C_ON          |               acabar2        apagar_calef                                                                                                                                                                                                                                                                  
 AC_ON         |               acabar3        apagar_airea                                                                                                                                                                                                                                                                  
+
+COMPROBACION DE LOS CASOS DE USO
+================================
+CASO Invierno
+	iniciar
+	encender_calef
+	apagar_calef
+	encender_calef
+	apagar_calef
+	acabar1
+
+CASO Primavera
+	iniciar
+	acabar1
+

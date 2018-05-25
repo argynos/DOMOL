@@ -49,6 +49,8 @@ REAL ({DIGITO}+[.]{DIGITO}*)|({DIGITO}*[.]{DIGITO}+)
 [E][S][T][A][D][O][S]							return ESTADOS;
 [T][R][A][N][S][I][C][I][O][N][E][S]			return TRANSICIONES;
 [C][O][M][P][O][R][T][A][M][I][E][N][T][O]		return COMPORTAMIENTO;
+[C][A][S][O][S][ ][D][E][ ][U][S][O]			return CASOS;
+[C][A][S][O]									return CASO;
 [-][>]											return MOV;
 [i][n][t]										return INT;
 [f][l][o][a][t]									return FLOAT;

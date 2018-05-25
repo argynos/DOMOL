@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.4.  */
+/* A Bison parser, made by GNU Bison 3.0.2.  */
 
 /* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -52,51 +52,51 @@ extern int yydebug;
     TRANSICIONES = 262,
     COMPORTAMIENTO = 263,
     MOV = 264,
-    HT = 265,
-    HET = 266,
-    LT = 267,
-    LET = 268,
-    AND = 269,
-    OR = 270,
-    NOT = 271,
-    EQUAL = 272,
-    NOT_EQUAL = 273,
-    ID = 274,
-    FLOAT = 275,
-    INT = 276,
-    BOOL = 277,
-    SI = 278,
-    SINO = 279,
-    ACTIVAR = 280,
-    DESACTIVAR = 281,
-    TRANSICION = 282,
-    ENTONCES = 283,
-    NUMERO = 284,
-    REAL = 285,
-    TRUE = 286,
-    FALSE = 287,
-    VERDADERO = 288,
-    FALSO = 289,
-    MenosUnario = 290
+    CASOS = 265,
+    CASO = 266,
+    HT = 267,
+    HET = 268,
+    LT = 269,
+    LET = 270,
+    AND = 271,
+    OR = 272,
+    NOT = 273,
+    EQUAL = 274,
+    NOT_EQUAL = 275,
+    ID = 276,
+    FLOAT = 277,
+    INT = 278,
+    BOOL = 279,
+    SI = 280,
+    SINO = 281,
+    ACTIVAR = 282,
+    DESACTIVAR = 283,
+    TRANSICION = 284,
+    ENTONCES = 285,
+    NUMERO = 286,
+    REAL = 287,
+    TRUE = 288,
+    FALSE = 289,
+    VERDADERO = 290,
+    FALSO = 291,
+    MenosUnario = 292
   };
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-
+typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 168 "gramatica.y" /* yacc.c:1909  */
+#line 185 "gramatica.y" /* yacc.c:1909  */
 
 	int entero;
 	float real;
 	char id[20];
 	bool booleano;
 
-#line 97 "gramatica.h" /* yacc.c:1909  */
+#line 99 "gramatica.h" /* yacc.c:1909  */
 };
-
-typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

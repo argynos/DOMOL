@@ -23,6 +23,7 @@ using namespace std;
 typedef char tipo_cadena[50];
 struct tipo_datoTT {
     tipo_cadena nombre;
+    int valor;
 };
 
 /**
@@ -44,6 +45,9 @@ public:
     */
     tipo_datoTT *tablaTransciones[20][20];
 
+    tipo_datoTT *tablaCasos[20][20];
+
+    bool test5(tipo_cadena estado, tipo_cadena transicion, int limit); 
     /**
      * Constructor por defecto del sistema.
      * Inicializa la tabla de transiciones con entradas a null y a ''.
@@ -67,12 +71,16 @@ public:
 	*/
     void insertarEstado (tipo_datoTT *id, int i);
 
+    void insertarCaso (tipo_datoTT *origen, tipo_datoTT *destino, int fila, int col);
+
+    bool conectividad(int limit);
+
     /**
      * This method shows the transition table of the system
      * @param an int to limit the print method acording with the states quantity
      * @return a string with the transition table.
      */
-    string mostrar(int limit);
+    string mostrar(int limit, int casos);
 
 
 

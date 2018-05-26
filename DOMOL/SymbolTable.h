@@ -89,10 +89,10 @@ public:
     bool buscar(int value, tipo_datoTS *&id, int type);
 
     /**
-     * Inserta un nuevo dato en la tambla de símbolos. Si ya existe y el tipo de dato es igual al que ya hay almacenado
+     * Inserta un nuevo dato en la tambla de símbolos. 
+     * Si ya existe y el tipo de dato es igual al que ya hay almacenado
      * en la tambla de símbolos, lo actualiza. Si no existe, lo inserta en la última posición de la tabla.
      *
-     * @param list: Tabla de símbolos.
      * @param id: elemento a insertar.
      * @return true si se ha insertado, false si no.
      */

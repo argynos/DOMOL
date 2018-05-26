@@ -19,7 +19,7 @@ lexico.o : lex.yy.c
 	g++ -c -olexico.o  lex.yy.c 
 
 gramatica.c : gramatica.y      
-	bison -v -ogramatica.c gramatica.y
+	bison -d -ogramatica.c gramatica.y
 
 lex.yy.c: lexico.l
 	flex lexico.l

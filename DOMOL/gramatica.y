@@ -16,6 +16,7 @@
 	#include <iostream>
 	#include <stdio.h>
 	#include <string.h>
+	#include <string>
 	#include <math.h>
 	#include "SymbolTable.h"
 	#include "TransitionsTable.h"
@@ -112,7 +113,6 @@
         real=false;
 
 	}
-	
 
     /**
     * Control de los errores del programa.
@@ -558,17 +558,33 @@ expr_logic: VERDADERO {$$=true; codigo=2;}
 
 %%
 
+
+
 int main(int argc, char *argv[]) {
 	n_lines=0;
 
-	if(argc != 3) {
-		cout << "El número de argumentos debe ser igual a 3 y es " << argc << "." << endl;
+	if(argc != 2) {
+		cout << "El número de argumentos debe ser igual a 2 y es " << argc << "." << endl;
 	} else {
-		yyin = fopen(argv[1], "rt");
-		yyout = fopen(argv[2], "wt");
-		yyparse();
-		mostrar(); // Volcamos el contenido de la tabla de símbolos al fichero de salida.
-		fclose(yyout);
+		string input_param = argv[1];
+		string dot = ".";
+
+		size_t found_input = input_param.find(dot); // Buscamos en la cadena de entrada el punto de la extensión.
+		string token_input = input_param.substr(found_input+1, found_input); // guardamos en un string el nombre de la extensión
+		string file_input_name = input_param.substr(0, found_input); // Y en otro, el nombre del fichero.
+
+		if(token_input != "dml") {
+			cout << "La extensión del archivo de entrada debe ser .dml y es: " << token_input << endl;
+			return 0;
+		} else {
+			yyin = fopen(argv[1], "rt");
+			string output_file = file_input_name + ".mch"; // creamos el nombre del fichero de salida.
+			yyout = fopen(output_file.c_str(), "w"); // Abrimos el flujo
+			yyparse();
+			mostrar(); // Volcamos el contenido de la tabla de símbolos al fichero de salida.
+			fclose(yyout);
+		}
+		
 	}
 	return 0;
 }

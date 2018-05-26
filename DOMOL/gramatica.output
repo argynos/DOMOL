@@ -1,4 +1,4 @@
-Terminals unused in grammar
+Terminales no usados en la gramática
 
    NOT
    ENTONCES
@@ -301,7 +301,7 @@ expr_logic (95)
     98, en la derecha: 27 28 69 86 87 88 89 90 91 96 97 98
 
 
-State 0
+Estado 0
 
     0 $accept: . programa $end
 
@@ -314,21 +314,21 @@ State 0
     inicio_zona_variables  ir al estado 4
 
 
-State 1
+Estado 1
 
    65 inicio_zona_variables: VARIABLES . '\n'
 
     '\n'  desplazar e ir al estado 5
 
 
-State 2
+Estado 2
 
     0 $accept: programa . $end
 
     $end  desplazar e ir al estado 6
 
 
-State 3
+Estado 3
 
     2 programa: zona_variables . zona_sensores zona_actuadores zona_estados zona_transiciones zona_comportamiento zona_casos
 
@@ -338,7 +338,7 @@ State 3
     inico_zona_sensores  ir al estado 9
 
 
-State 4
+Estado 4
 
    64 zona_variables: inicio_zona_variables . lista_variables
 
@@ -349,28 +349,28 @@ State 4
     variable         ir al estado 13
 
 
-State 5
+Estado 5
 
    65 inicio_zona_variables: VARIABLES '\n' .
 
     $default  reduce usando la regla 65 (inicio_zona_variables)
 
 
-State 6
+Estado 6
 
     0 $accept: programa $end .
 
     $default  aceptar
 
 
-State 7
+Estado 7
 
    54 inico_zona_sensores: SENSORES . '\n'
 
     '\n'  desplazar e ir al estado 14
 
 
-State 8
+Estado 8
 
     2 programa: zona_variables zona_sensores . zona_actuadores zona_estados zona_transiciones zona_comportamiento zona_casos
 
@@ -380,7 +380,7 @@ State 8
     inicio_zona_actuadores  ir al estado 17
 
 
-State 9
+Estado 9
 
    53 zona_sensores: inico_zona_sensores . lista_sensores
 
@@ -395,14 +395,14 @@ State 9
     tipo            ir al estado 25
 
 
-State 10
+Estado 10
 
    70 variable: error . '\n'
 
     '\n'  desplazar e ir al estado 26
 
 
-State 11
+Estado 11
 
    68 variable: ID . '=' expr '\n'
    69         | ID . '=' expr_logic '\n'
@@ -410,7 +410,7 @@ State 11
     '='  desplazar e ir al estado 27
 
 
-State 12
+Estado 12
 
    64 zona_variables: inicio_zona_variables lista_variables .
    66 lista_variables: lista_variables . variable
@@ -423,28 +423,28 @@ State 12
     variable  ir al estado 28
 
 
-State 13
+Estado 13
 
    67 lista_variables: variable .
 
     $default  reduce usando la regla 67 (lista_variables)
 
 
-State 14
+Estado 14
 
    54 inico_zona_sensores: SENSORES '\n' .
 
     $default  reduce usando la regla 54 (inico_zona_sensores)
 
 
-State 15
+Estado 15
 
    48 inicio_zona_actuadores: ACTUADORES . '\n'
 
     '\n'  desplazar e ir al estado 29
 
 
-State 16
+Estado 16
 
     2 programa: zona_variables zona_sensores zona_actuadores . zona_estados zona_transiciones zona_comportamiento zona_casos
 
@@ -454,7 +454,7 @@ State 16
     inicio_zona_estados  ir al estado 32
 
 
-State 17
+Estado 17
 
    47 zona_actuadores: inicio_zona_actuadores . lista_actuadores
 
@@ -465,35 +465,35 @@ State 17
     actuador          ir al estado 36
 
 
-State 18
+Estado 18
 
    58 linea_sensores: error . '\n'
 
     '\n'  desplazar e ir al estado 37
 
 
-State 19
+Estado 19
 
    62 tipo: FLOAT .
 
     $default  reduce usando la regla 62 (tipo)
 
 
-State 20
+Estado 20
 
    61 tipo: INT .
 
     $default  reduce usando la regla 61 (tipo)
 
 
-State 21
+Estado 21
 
    63 tipo: BOOL .
 
     $default  reduce usando la regla 63 (tipo)
 
 
-State 22
+Estado 22
 
    53 zona_sensores: inico_zona_sensores lista_sensores .
    55 lista_sensores: lista_sensores . linea_sensores
@@ -510,14 +510,14 @@ State 22
     tipo            ir al estado 25
 
 
-State 23
+Estado 23
 
    56 lista_sensores: linea_sensores .
 
     $default  reduce usando la regla 56 (lista_sensores)
 
 
-State 24
+Estado 24
 
    57 linea_sensores: sensores . '\n'
    60 sensores: sensores . ',' ID
@@ -526,21 +526,21 @@ State 24
     ','   desplazar e ir al estado 40
 
 
-State 25
+Estado 25
 
    59 sensores: tipo . ID
 
     ID  desplazar e ir al estado 41
 
 
-State 26
+Estado 26
 
    70 variable: error '\n' .
 
     $default  reduce usando la regla 70 (variable)
 
 
-State 27
+Estado 27
 
    68 variable: ID '=' . expr '\n'
    69         | ID '=' . expr_logic '\n'
@@ -557,28 +557,28 @@ State 27
     expr_logic  ir al estado 50
 
 
-State 28
+Estado 28
 
    66 lista_variables: lista_variables variable .
 
     $default  reduce usando la regla 66 (lista_variables)
 
 
-State 29
+Estado 29
 
    48 inicio_zona_actuadores: ACTUADORES '\n' .
 
     $default  reduce usando la regla 48 (inicio_zona_actuadores)
 
 
-State 30
+Estado 30
 
    42 inicio_zona_estados: ESTADOS . '\n'
 
     '\n'  desplazar e ir al estado 51
 
 
-State 31
+Estado 31
 
     2 programa: zona_variables zona_sensores zona_actuadores zona_estados . zona_transiciones zona_comportamiento zona_casos
 
@@ -588,7 +588,7 @@ State 31
     inicio_zona_transiciones  ir al estado 54
 
 
-State 32
+Estado 32
 
    41 zona_estados: inicio_zona_estados . lista_estados
 
@@ -599,21 +599,21 @@ State 32
     estado         ir al estado 58
 
 
-State 33
+Estado 33
 
    52 actuador: error . '\n'
 
     '\n'  desplazar e ir al estado 59
 
 
-State 34
+Estado 34
 
    51 actuador: ID . '\n'
 
     '\n'  desplazar e ir al estado 60
 
 
-State 35
+Estado 35
 
    47 zona_actuadores: inicio_zona_actuadores lista_actuadores .
    49 lista_actuadores: lista_actuadores . actuador
@@ -626,84 +626,84 @@ State 35
     actuador  ir al estado 61
 
 
-State 36
+Estado 36
 
    50 lista_actuadores: actuador .
 
     $default  reduce usando la regla 50 (lista_actuadores)
 
 
-State 37
+Estado 37
 
    58 linea_sensores: error '\n' .
 
     $default  reduce usando la regla 58 (linea_sensores)
 
 
-State 38
+Estado 38
 
    55 lista_sensores: lista_sensores linea_sensores .
 
     $default  reduce usando la regla 55 (lista_sensores)
 
 
-State 39
+Estado 39
 
    57 linea_sensores: sensores '\n' .
 
     $default  reduce usando la regla 57 (linea_sensores)
 
 
-State 40
+Estado 40
 
    60 sensores: sensores ',' . ID
 
     ID  desplazar e ir al estado 62
 
 
-State 41
+Estado 41
 
    59 sensores: tipo ID .
 
     $default  reduce usando la regla 59 (sensores)
 
 
-State 42
+Estado 42
 
    73 expr: ID .
 
     $default  reduce usando la regla 73 (expr)
 
 
-State 43
+Estado 43
 
    71 expr: NUMERO .
 
     $default  reduce usando la regla 71 (expr)
 
 
-State 44
+Estado 44
 
    72 expr: REAL .
 
     $default  reduce usando la regla 72 (expr)
 
 
-State 45
+Estado 45
 
    82 expr_logic: VERDADERO .
 
     $default  reduce usando la regla 82 (expr_logic)
 
 
-State 46
+Estado 46
 
    83 expr_logic: FALSO .
 
     $default  reduce usando la regla 83 (expr_logic)
 
 
-State 47
+Estado 47
 
    74 expr: '-' . expr
 
@@ -716,7 +716,7 @@ State 47
     expr  ir al estado 64
 
 
-State 48
+Estado 48
 
    81 expr: '(' . expr ')'
    98 expr_logic: '(' . expr_logic ')'
@@ -733,7 +733,7 @@ State 48
     expr_logic  ir al estado 66
 
 
-State 49
+Estado 49
 
    68 variable: ID '=' expr . '\n'
    75 expr: expr . '+' expr
@@ -766,7 +766,7 @@ State 49
     '\n'       desplazar e ir al estado 79
 
 
-State 50
+Estado 50
 
    69 variable: ID '=' expr_logic . '\n'
    86 expr_logic: expr_logic . EQUAL expr
@@ -783,21 +783,21 @@ State 50
     '\n'       desplazar e ir al estado 84
 
 
-State 51
+Estado 51
 
    42 inicio_zona_estados: ESTADOS '\n' .
 
     $default  reduce usando la regla 42 (inicio_zona_estados)
 
 
-State 52
+Estado 52
 
    36 inicio_zona_transiciones: TRANSICIONES . '\n'
 
     '\n'  desplazar e ir al estado 85
 
 
-State 53
+Estado 53
 
     2 programa: zona_variables zona_sensores zona_actuadores zona_estados zona_transiciones . zona_comportamiento zona_casos
 
@@ -807,7 +807,7 @@ State 53
     inicio_zona_comportamiento  ir al estado 88
 
 
-State 54
+Estado 54
 
    35 zona_transiciones: inicio_zona_transiciones . lista_transiciones
 
@@ -818,21 +818,21 @@ State 54
     transicion          ir al estado 92
 
 
-State 55
+Estado 55
 
    46 estado: error . '\n'
 
     '\n'  desplazar e ir al estado 93
 
 
-State 56
+Estado 56
 
    45 estado: ID . '\n'
 
     '\n'  desplazar e ir al estado 94
 
 
-State 57
+Estado 57
 
    41 zona_estados: inicio_zona_estados lista_estados .
    43 lista_estados: lista_estados . estado
@@ -845,42 +845,42 @@ State 57
     estado  ir al estado 95
 
 
-State 58
+Estado 58
 
    44 lista_estados: estado .
 
     $default  reduce usando la regla 44 (lista_estados)
 
 
-State 59
+Estado 59
 
    52 actuador: error '\n' .
 
     $default  reduce usando la regla 52 (actuador)
 
 
-State 60
+Estado 60
 
    51 actuador: ID '\n' .
 
     $default  reduce usando la regla 51 (actuador)
 
 
-State 61
+Estado 61
 
    49 lista_actuadores: lista_actuadores actuador .
 
     $default  reduce usando la regla 49 (lista_actuadores)
 
 
-State 62
+Estado 62
 
    60 sensores: sensores ',' ID .
 
     $default  reduce usando la regla 60 (sensores)
 
 
-State 63
+Estado 63
 
    81 expr: '(' . expr ')'
 
@@ -893,7 +893,7 @@ State 63
     expr  ir al estado 96
 
 
-State 64
+Estado 64
 
    74 expr: '-' expr .
    75     | expr . '+' expr
@@ -906,7 +906,7 @@ State 64
     $default  reduce usando la regla 74 (expr)
 
 
-State 65
+Estado 65
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -939,7 +939,7 @@ State 65
     ')'        desplazar e ir al estado 97
 
 
-State 66
+Estado 66
 
    86 expr_logic: expr_logic . EQUAL expr
    87           | expr_logic . NOT_EQUAL expr
@@ -956,7 +956,7 @@ State 66
     ')'        desplazar e ir al estado 98
 
 
-State 67
+Estado 67
 
    92 expr_logic: expr HT . expr
 
@@ -969,7 +969,7 @@ State 67
     expr  ir al estado 99
 
 
-State 68
+Estado 68
 
    93 expr_logic: expr HET . expr
 
@@ -982,7 +982,7 @@ State 68
     expr  ir al estado 100
 
 
-State 69
+Estado 69
 
    94 expr_logic: expr LT . expr
 
@@ -995,7 +995,7 @@ State 69
     expr  ir al estado 101
 
 
-State 70
+Estado 70
 
    95 expr_logic: expr LET . expr
 
@@ -1008,7 +1008,7 @@ State 70
     expr  ir al estado 102
 
 
-State 71
+Estado 71
 
    84 expr_logic: expr EQUAL . expr
    88           | expr EQUAL . expr_logic
@@ -1025,7 +1025,7 @@ State 71
     expr_logic  ir al estado 104
 
 
-State 72
+Estado 72
 
    85 expr_logic: expr NOT_EQUAL . expr
    89           | expr NOT_EQUAL . expr_logic
@@ -1042,7 +1042,7 @@ State 72
     expr_logic  ir al estado 106
 
 
-State 73
+Estado 73
 
    75 expr: expr '+' . expr
 
@@ -1055,7 +1055,7 @@ State 73
     expr  ir al estado 107
 
 
-State 74
+Estado 74
 
    76 expr: expr '-' . expr
 
@@ -1068,7 +1068,7 @@ State 74
     expr  ir al estado 108
 
 
-State 75
+Estado 75
 
    77 expr: expr '*' . expr
 
@@ -1081,7 +1081,7 @@ State 75
     expr  ir al estado 109
 
 
-State 76
+Estado 76
 
    78 expr: expr '/' . expr
 
@@ -1094,7 +1094,7 @@ State 76
     expr  ir al estado 110
 
 
-State 77
+Estado 77
 
    79 expr: expr '%' . expr
 
@@ -1107,7 +1107,7 @@ State 77
     expr  ir al estado 111
 
 
-State 78
+Estado 78
 
    80 expr: expr '^' . expr
 
@@ -1120,14 +1120,14 @@ State 78
     expr  ir al estado 112
 
 
-State 79
+Estado 79
 
    68 variable: ID '=' expr '\n' .
 
     $default  reduce usando la regla 68 (variable)
 
 
-State 80
+Estado 80
 
    96 expr_logic: expr_logic AND . expr_logic
 
@@ -1143,7 +1143,7 @@ State 80
     expr_logic  ir al estado 114
 
 
-State 81
+Estado 81
 
    97 expr_logic: expr_logic OR . expr_logic
 
@@ -1159,7 +1159,7 @@ State 81
     expr_logic  ir al estado 115
 
 
-State 82
+Estado 82
 
    86 expr_logic: expr_logic EQUAL . expr
    90           | expr_logic EQUAL . expr_logic
@@ -1176,7 +1176,7 @@ State 82
     expr_logic  ir al estado 117
 
 
-State 83
+Estado 83
 
    87 expr_logic: expr_logic NOT_EQUAL . expr
    91           | expr_logic NOT_EQUAL . expr_logic
@@ -1193,28 +1193,28 @@ State 83
     expr_logic  ir al estado 119
 
 
-State 84
+Estado 84
 
    69 variable: ID '=' expr_logic '\n' .
 
     $default  reduce usando la regla 69 (variable)
 
 
-State 85
+Estado 85
 
    36 inicio_zona_transiciones: TRANSICIONES '\n' .
 
     $default  reduce usando la regla 36 (inicio_zona_transiciones)
 
 
-State 86
+Estado 86
 
    12 inicio_zona_comportamiento: COMPORTAMIENTO . '\n'
 
     '\n'  desplazar e ir al estado 120
 
 
-State 87
+Estado 87
 
     2 programa: zona_variables zona_sensores zona_actuadores zona_estados zona_transiciones zona_comportamiento . zona_casos
 
@@ -1224,7 +1224,7 @@ State 87
     inicio_zona_casos  ir al estado 123
 
 
-State 88
+Estado 88
 
    11 zona_comportamiento: inicio_zona_comportamiento . lista_comportamientos
 
@@ -1236,21 +1236,21 @@ State 88
     inicio_comportamiento  ir al estado 128
 
 
-State 89
+Estado 89
 
    40 transicion: error . '\n'
 
     '\n'  desplazar e ir al estado 129
 
 
-State 90
+Estado 90
 
    39 transicion: ID . ':' ID MOV ID '\n'
 
     ':'  desplazar e ir al estado 130
 
 
-State 91
+Estado 91
 
    35 zona_transiciones: inicio_zona_transiciones lista_transiciones .
    38 lista_transiciones: lista_transiciones . transicion
@@ -1263,35 +1263,35 @@ State 91
     transicion  ir al estado 131
 
 
-State 92
+Estado 92
 
    37 lista_transiciones: transicion .
 
     $default  reduce usando la regla 37 (lista_transiciones)
 
 
-State 93
+Estado 93
 
    46 estado: error '\n' .
 
     $default  reduce usando la regla 46 (estado)
 
 
-State 94
+Estado 94
 
    45 estado: ID '\n' .
 
     $default  reduce usando la regla 45 (estado)
 
 
-State 95
+Estado 95
 
    43 lista_estados: lista_estados estado .
 
     $default  reduce usando la regla 43 (lista_estados)
 
 
-State 96
+Estado 96
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1310,21 +1310,21 @@ State 96
     ')'  desplazar e ir al estado 97
 
 
-State 97
+Estado 97
 
    81 expr: '(' expr ')' .
 
     $default  reduce usando la regla 81 (expr)
 
 
-State 98
+Estado 98
 
    98 expr_logic: '(' expr_logic ')' .
 
     $default  reduce usando la regla 98 (expr_logic)
 
 
-State 99
+Estado 99
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1344,7 +1344,7 @@ State 99
     $default  reduce usando la regla 92 (expr_logic)
 
 
-State 100
+Estado 100
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1364,7 +1364,7 @@ State 100
     $default  reduce usando la regla 93 (expr_logic)
 
 
-State 101
+Estado 101
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1384,7 +1384,7 @@ State 101
     $default  reduce usando la regla 94 (expr_logic)
 
 
-State 102
+Estado 102
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1404,7 +1404,7 @@ State 102
     $default  reduce usando la regla 95 (expr_logic)
 
 
-State 103
+Estado 103
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1436,7 +1436,7 @@ State 103
     $default  reduce usando la regla 84 (expr_logic)
 
 
-State 104
+Estado 104
 
    86 expr_logic: expr_logic . EQUAL expr
    87           | expr_logic . NOT_EQUAL expr
@@ -1449,7 +1449,7 @@ State 104
     $default  reduce usando la regla 88 (expr_logic)
 
 
-State 105
+Estado 105
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1481,7 +1481,7 @@ State 105
     $default  reduce usando la regla 85 (expr_logic)
 
 
-State 106
+Estado 106
 
    86 expr_logic: expr_logic . EQUAL expr
    87           | expr_logic . NOT_EQUAL expr
@@ -1494,7 +1494,7 @@ State 106
     $default  reduce usando la regla 89 (expr_logic)
 
 
-State 107
+Estado 107
 
    75 expr: expr . '+' expr
    75     | expr '+' expr .
@@ -1512,7 +1512,7 @@ State 107
     $default  reduce usando la regla 75 (expr)
 
 
-State 108
+Estado 108
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1530,7 +1530,7 @@ State 108
     $default  reduce usando la regla 76 (expr)
 
 
-State 109
+Estado 109
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1545,7 +1545,7 @@ State 109
     $default  reduce usando la regla 77 (expr)
 
 
-State 110
+Estado 110
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1560,7 +1560,7 @@ State 110
     $default  reduce usando la regla 78 (expr)
 
 
-State 111
+Estado 111
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1575,7 +1575,7 @@ State 111
     $default  reduce usando la regla 79 (expr)
 
 
-State 112
+Estado 112
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1590,7 +1590,7 @@ State 112
     $default  reduce usando la regla 80 (expr)
 
 
-State 113
+Estado 113
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1621,7 +1621,7 @@ State 113
     '^'        desplazar e ir al estado 78
 
 
-State 114
+Estado 114
 
    86 expr_logic: expr_logic . EQUAL expr
    87           | expr_logic . NOT_EQUAL expr
@@ -1637,7 +1637,7 @@ State 114
     $default  reduce usando la regla 96 (expr_logic)
 
 
-State 115
+Estado 115
 
    86 expr_logic: expr_logic . EQUAL expr
    87           | expr_logic . NOT_EQUAL expr
@@ -1653,7 +1653,7 @@ State 115
     $default  reduce usando la regla 97 (expr_logic)
 
 
-State 116
+Estado 116
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1685,7 +1685,7 @@ State 116
     $default  reduce usando la regla 86 (expr_logic)
 
 
-State 117
+Estado 117
 
    86 expr_logic: expr_logic . EQUAL expr
    87           | expr_logic . NOT_EQUAL expr
@@ -1698,7 +1698,7 @@ State 117
     $default  reduce usando la regla 90 (expr_logic)
 
 
-State 118
+Estado 118
 
    75 expr: expr . '+' expr
    76     | expr . '-' expr
@@ -1730,7 +1730,7 @@ State 118
     $default  reduce usando la regla 87 (expr_logic)
 
 
-State 119
+Estado 119
 
    86 expr_logic: expr_logic . EQUAL expr
    87           | expr_logic . NOT_EQUAL expr
@@ -1743,28 +1743,28 @@ State 119
     $default  reduce usando la regla 91 (expr_logic)
 
 
-State 120
+Estado 120
 
    12 inicio_zona_comportamiento: COMPORTAMIENTO '\n' .
 
     $default  reduce usando la regla 12 (inicio_zona_comportamiento)
 
 
-State 121
+Estado 121
 
     4 inicio_zona_casos: CASOS . '\n'
 
     '\n'  desplazar e ir al estado 132
 
 
-State 122
+Estado 122
 
     2 programa: zona_variables zona_sensores zona_actuadores zona_estados zona_transiciones zona_comportamiento zona_casos .
 
     $default  reduce usando la regla 2 (programa)
 
 
-State 123
+Estado 123
 
     3 zona_casos: inicio_zona_casos . lista_casos
 
@@ -1775,21 +1775,21 @@ State 123
     caso_uso     ir al estado 136
 
 
-State 124
+Estado 124
 
    17 inicio_comportamiento: error . '\n'
 
     '\n'  desplazar e ir al estado 137
 
 
-State 125
+Estado 125
 
    16 inicio_comportamiento: ID . '[' '\n'
 
     '['  desplazar e ir al estado 138
 
 
-State 126
+Estado 126
 
    11 zona_comportamiento: inicio_zona_comportamiento lista_comportamientos .
    14 lista_comportamientos: lista_comportamientos . comportamiento_estado
@@ -1803,14 +1803,14 @@ State 126
     inicio_comportamiento  ir al estado 128
 
 
-State 127
+Estado 127
 
    13 lista_comportamientos: comportamiento_estado .
 
     $default  reduce usando la regla 13 (lista_comportamientos)
 
 
-State 128
+Estado 128
 
    15 comportamiento_estado: inicio_comportamiento . instruccion_basica ']' '\n'
 
@@ -1828,49 +1828,49 @@ State 128
     instruccion_transicion  ir al estado 150
 
 
-State 129
+Estado 129
 
    40 transicion: error '\n' .
 
     $default  reduce usando la regla 40 (transicion)
 
 
-State 130
+Estado 130
 
    39 transicion: ID ':' . ID MOV ID '\n'
 
     ID  desplazar e ir al estado 151
 
 
-State 131
+Estado 131
 
    38 lista_transiciones: lista_transiciones transicion .
 
     $default  reduce usando la regla 38 (lista_transiciones)
 
 
-State 132
+Estado 132
 
     4 inicio_zona_casos: CASOS '\n' .
 
     $default  reduce usando la regla 4 (inicio_zona_casos)
 
 
-State 133
+Estado 133
 
     8 caso_uso: error . '\n'
 
     '\n'  desplazar e ir al estado 152
 
 
-State 134
+Estado 134
 
     7 caso_uso: CASO . ID ':' l_estados '\n'
 
     ID  desplazar e ir al estado 153
 
 
-State 135
+Estado 135
 
     3 zona_casos: inicio_zona_casos lista_casos .
     6 lista_casos: lista_casos . caso_uso
@@ -1883,42 +1883,42 @@ State 135
     caso_uso  ir al estado 154
 
 
-State 136
+Estado 136
 
     5 lista_casos: caso_uso .
 
     $default  reduce usando la regla 5 (lista_casos)
 
 
-State 137
+Estado 137
 
    17 inicio_comportamiento: error '\n' .
 
     $default  reduce usando la regla 17 (inicio_comportamiento)
 
 
-State 138
+Estado 138
 
    16 inicio_comportamiento: ID '[' . '\n'
 
     '\n'  desplazar e ir al estado 155
 
 
-State 139
+Estado 139
 
    14 lista_comportamientos: lista_comportamientos comportamiento_estado .
 
     $default  reduce usando la regla 14 (lista_comportamientos)
 
 
-State 140
+Estado 140
 
    33 instruccion_variable: ID . '=' expr '\n'
 
     '='  desplazar e ir al estado 156
 
 
-State 141
+Estado 141
 
    27 alternativa: SI . expr_logic '[' '\n' instruccion_basica ']' '\n'
    28            | SI . expr_logic '[' '\n' instruccion_basica ']' '\n' alternativa_sino
@@ -1935,28 +1935,28 @@ State 141
     expr_logic  ir al estado 157
 
 
-State 142
+Estado 142
 
    31 instrucion_actuador: ACTIVAR . ID '\n'
 
     ID  desplazar e ir al estado 158
 
 
-State 143
+Estado 143
 
    32 instrucion_actuador: DESACTIVAR . ID '\n'
 
     ID  desplazar e ir al estado 159
 
 
-State 144
+Estado 144
 
    34 instruccion_transicion: TRANSICION . ID '\n'
 
     ID  desplazar e ir al estado 160
 
 
-State 145
+Estado 145
 
    15 comportamiento_estado: inicio_comportamiento instruccion_basica . ']' '\n'
    22 instruccion_basica: instruccion_basica . instrucion_actuador
@@ -1974,7 +1974,7 @@ State 145
     instruccion_transicion  ir al estado 164
 
 
-State 146
+Estado 146
 
    21 instruccion_basica: lista_alternativas .
    26 lista_alternativas: lista_alternativas . alternativa
@@ -1986,70 +1986,70 @@ State 146
     alternativa  ir al estado 165
 
 
-State 147
+Estado 147
 
    25 lista_alternativas: alternativa .
 
     $default  reduce usando la regla 25 (lista_alternativas)
 
 
-State 148
+Estado 148
 
    18 instruccion_basica: instrucion_actuador .
 
     $default  reduce usando la regla 18 (instruccion_basica)
 
 
-State 149
+Estado 149
 
    19 instruccion_basica: instruccion_variable .
 
     $default  reduce usando la regla 19 (instruccion_basica)
 
 
-State 150
+Estado 150
 
    20 instruccion_basica: instruccion_transicion .
 
     $default  reduce usando la regla 20 (instruccion_basica)
 
 
-State 151
+Estado 151
 
    39 transicion: ID ':' ID . MOV ID '\n'
 
     MOV  desplazar e ir al estado 166
 
 
-State 152
+Estado 152
 
     8 caso_uso: error '\n' .
 
     $default  reduce usando la regla 8 (caso_uso)
 
 
-State 153
+Estado 153
 
     7 caso_uso: CASO ID . ':' l_estados '\n'
 
     ':'  desplazar e ir al estado 167
 
 
-State 154
+Estado 154
 
     6 lista_casos: lista_casos caso_uso .
 
     $default  reduce usando la regla 6 (lista_casos)
 
 
-State 155
+Estado 155
 
    16 inicio_comportamiento: ID '[' '\n' .
 
     $default  reduce usando la regla 16 (inicio_comportamiento)
 
 
-State 156
+Estado 156
 
    33 instruccion_variable: ID '=' . expr '\n'
 
@@ -2062,7 +2062,7 @@ State 156
     expr  ir al estado 168
 
 
-State 157
+Estado 157
 
    27 alternativa: SI expr_logic . '[' '\n' instruccion_basica ']' '\n'
    28            | SI expr_logic . '[' '\n' instruccion_basica ']' '\n' alternativa_sino
@@ -2080,70 +2080,70 @@ State 157
     '['        desplazar e ir al estado 169
 
 
-State 158
+Estado 158
 
    31 instrucion_actuador: ACTIVAR ID . '\n'
 
     '\n'  desplazar e ir al estado 170
 
 
-State 159
+Estado 159
 
    32 instrucion_actuador: DESACTIVAR ID . '\n'
 
     '\n'  desplazar e ir al estado 171
 
 
-State 160
+Estado 160
 
    34 instruccion_transicion: TRANSICION ID . '\n'
 
     '\n'  desplazar e ir al estado 172
 
 
-State 161
+Estado 161
 
    15 comportamiento_estado: inicio_comportamiento instruccion_basica ']' . '\n'
 
     '\n'  desplazar e ir al estado 173
 
 
-State 162
+Estado 162
 
    22 instruccion_basica: instruccion_basica instrucion_actuador .
 
     $default  reduce usando la regla 22 (instruccion_basica)
 
 
-State 163
+Estado 163
 
    23 instruccion_basica: instruccion_basica instruccion_variable .
 
     $default  reduce usando la regla 23 (instruccion_basica)
 
 
-State 164
+Estado 164
 
    24 instruccion_basica: instruccion_basica instruccion_transicion .
 
     $default  reduce usando la regla 24 (instruccion_basica)
 
 
-State 165
+Estado 165
 
    26 lista_alternativas: lista_alternativas alternativa .
 
     $default  reduce usando la regla 26 (lista_alternativas)
 
 
-State 166
+Estado 166
 
    39 transicion: ID ':' ID MOV . ID '\n'
 
     ID  desplazar e ir al estado 174
 
 
-State 167
+Estado 167
 
     7 caso_uso: CASO ID ':' . l_estados '\n'
 
@@ -2152,7 +2152,7 @@ State 167
     l_estados  ir al estado 176
 
 
-State 168
+Estado 168
 
    33 instruccion_variable: ID '=' expr . '\n'
    75 expr: expr . '+' expr
@@ -2171,7 +2171,7 @@ State 168
     '\n'  desplazar e ir al estado 177
 
 
-State 169
+Estado 169
 
    27 alternativa: SI expr_logic '[' . '\n' instruccion_basica ']' '\n'
    28            | SI expr_logic '[' . '\n' instruccion_basica ']' '\n' alternativa_sino
@@ -2179,49 +2179,49 @@ State 169
     '\n'  desplazar e ir al estado 178
 
 
-State 170
+Estado 170
 
    31 instrucion_actuador: ACTIVAR ID '\n' .
 
     $default  reduce usando la regla 31 (instrucion_actuador)
 
 
-State 171
+Estado 171
 
    32 instrucion_actuador: DESACTIVAR ID '\n' .
 
     $default  reduce usando la regla 32 (instrucion_actuador)
 
 
-State 172
+Estado 172
 
    34 instruccion_transicion: TRANSICION ID '\n' .
 
     $default  reduce usando la regla 34 (instruccion_transicion)
 
 
-State 173
+Estado 173
 
    15 comportamiento_estado: inicio_comportamiento instruccion_basica ']' '\n' .
 
     $default  reduce usando la regla 15 (comportamiento_estado)
 
 
-State 174
+Estado 174
 
    39 transicion: ID ':' ID MOV ID . '\n'
 
     '\n'  desplazar e ir al estado 179
 
 
-State 175
+Estado 175
 
     9 l_estados: ID .
 
     $default  reduce usando la regla 9 (l_estados)
 
 
-State 176
+Estado 176
 
     7 caso_uso: CASO ID ':' l_estados . '\n'
    10 l_estados: l_estados . ';' ID
@@ -2230,14 +2230,14 @@ State 176
     ';'   desplazar e ir al estado 181
 
 
-State 177
+Estado 177
 
    33 instruccion_variable: ID '=' expr '\n' .
 
     $default  reduce usando la regla 33 (instruccion_variable)
 
 
-State 178
+Estado 178
 
    27 alternativa: SI expr_logic '[' '\n' . instruccion_basica ']' '\n'
    28            | SI expr_logic '[' '\n' . instruccion_basica ']' '\n' alternativa_sino
@@ -2256,28 +2256,28 @@ State 178
     instruccion_transicion  ir al estado 150
 
 
-State 179
+Estado 179
 
    39 transicion: ID ':' ID MOV ID '\n' .
 
     $default  reduce usando la regla 39 (transicion)
 
 
-State 180
+Estado 180
 
     7 caso_uso: CASO ID ':' l_estados '\n' .
 
     $default  reduce usando la regla 7 (caso_uso)
 
 
-State 181
+Estado 181
 
    10 l_estados: l_estados ';' . ID
 
     ID  desplazar e ir al estado 183
 
 
-State 182
+Estado 182
 
    22 instruccion_basica: instruccion_basica . instrucion_actuador
    23                   | instruccion_basica . instruccion_variable
@@ -2296,14 +2296,14 @@ State 182
     instruccion_transicion  ir al estado 164
 
 
-State 183
+Estado 183
 
    10 l_estados: l_estados ';' ID .
 
     $default  reduce usando la regla 10 (l_estados)
 
 
-State 184
+Estado 184
 
    27 alternativa: SI expr_logic '[' '\n' instruccion_basica ']' . '\n'
    28            | SI expr_logic '[' '\n' instruccion_basica ']' . '\n' alternativa_sino
@@ -2311,7 +2311,7 @@ State 184
     '\n'  desplazar e ir al estado 185
 
 
-State 185
+Estado 185
 
    27 alternativa: SI expr_logic '[' '\n' instruccion_basica ']' '\n' .
    28            | SI expr_logic '[' '\n' instruccion_basica ']' '\n' . alternativa_sino
@@ -2329,35 +2329,35 @@ State 185
     alternativa_sino  ir al estado 188
 
 
-State 186
+Estado 186
 
    30 alternativa_sino: error . '\n'
 
     '\n'  desplazar e ir al estado 189
 
 
-State 187
+Estado 187
 
    29 alternativa_sino: SINO . '[' instruccion_basica ']' '\n'
 
     '['  desplazar e ir al estado 190
 
 
-State 188
+Estado 188
 
    28 alternativa: SI expr_logic '[' '\n' instruccion_basica ']' '\n' alternativa_sino .
 
     $default  reduce usando la regla 28 (alternativa)
 
 
-State 189
+Estado 189
 
    30 alternativa_sino: error '\n' .
 
     $default  reduce usando la regla 30 (alternativa_sino)
 
 
-State 190
+Estado 190
 
    29 alternativa_sino: SINO '[' . instruccion_basica ']' '\n'
 
@@ -2375,7 +2375,7 @@ State 190
     instruccion_transicion  ir al estado 150
 
 
-State 191
+Estado 191
 
    22 instruccion_basica: instruccion_basica . instrucion_actuador
    23                   | instruccion_basica . instruccion_variable
@@ -2393,14 +2393,14 @@ State 191
     instruccion_transicion  ir al estado 164
 
 
-State 192
+Estado 192
 
    29 alternativa_sino: SINO '[' instruccion_basica ']' . '\n'
 
     '\n'  desplazar e ir al estado 193
 
 
-State 193
+Estado 193
 
    29 alternativa_sino: SINO '[' instruccion_basica ']' '\n' .
 

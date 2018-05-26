@@ -1,11 +1,11 @@
 #fichero Makefile
 
 OBJ = gramatica.o lexico.o 
-ejecucion: gramatica
-	#./gramatica ejemplo1.dml salida1.mch
-	./gramatica ejemploAmpl1.dml salidaAmpl1.mch
-	#./gramatica ejemplo_errores.dml salida_errores.mch
-	#./gramatica ejemplo_errores_calculadora.dml salida_errores_calc.mch
+#ejecucion: gramatica
+	#./gramatica ejemplo1.dml salida1.mch #./gramatica ejemplo_errores.dml salida_errores.mch 	#./gramatica ejemplo_errores_calculadora.dml salida_errores_calc.mch
+
+	#./gramatica ejemploAmpl1.dml salidaAmpl1.mch
+	
 gramatica.h : gramatica
 	make clean
 

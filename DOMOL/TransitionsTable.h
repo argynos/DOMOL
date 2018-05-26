@@ -26,8 +26,9 @@ using namespace std;
 typedef char tipo_cadena[50];
 
 /**
-*
-*/
+ * Struct que guarda las columnas de la tabla de transiciones. Cada variabele es una columna.
+ * Si añadimos un nuevo tipo_datoTT, estamos añadiendo una nueva fila a la tabla.
+ */
 struct tipo_datoTT {
     tipo_cadena nombre;
     int valor;
@@ -113,7 +114,7 @@ public:
 
     /**
      * Este método monta una cadena con el contenido de la tabla de transiciones y la 
-     *tabla de casos de uso.
+     * tabla de casos de uso.
      *
      * @param limit: número total de estados.
      * @param casos: número total de casos.

@@ -56,8 +56,8 @@ private:
 public:
 
     /**
-    * Tabla de símbolos de la aplicación.
-    */
+     * Tabla de símbolos de la aplicación.
+     */
     tipo_datoTS *tablaSimbolos[100];
 
     /**
@@ -71,7 +71,7 @@ public:
      * la variable pos, y devuelve true.
      * Si no existe, retorna false.
      *
-     * @param nombre: id a buscar.
+     * @param nombre: nombre a buscar.
      * @param id: elemento encontrado.
      * @param pos: posición en la que se encuentra el elemento encontrado.
      * @return true si se encuentra, false si no.
@@ -80,8 +80,11 @@ public:
 
 
     /**
-     * Busca una entrada en la tabla por su tipo
+     * Busca una entrada en la tabla por su tipo y valor dados por parámetro.
+     * Si encuentra la entrada, devuelve el tipo de datos en la variable de salida id
+     * y retorna true.
      *
+     * @param value: valor del tipo a buscar.
      * @param tipo: tipo a buscar.
      * @param id: entrada encontrada.
      * @return true si se ha encontrado, false si no.
@@ -98,15 +101,15 @@ public:
      */
     bool insertar(tipo_datoTS *id);
 
-	/**
-	 * Devuelve el tamaño de la tabla de símbolos.
-	 *
-	 * @return tamaño de la tabla de símbolos como entero.
-	 */
+    /**
+     * Devuelve el tamaño de la tabla de símbolos.
+     *
+     * @return tamaño de la tabla de símbolos como entero.
+     */
     int size();
 
     /**
-     * Este método monta la tabla de síbolos con el formato adecuado.
+     * Construye una cadena de caracteres con la tabla de síbolos con el formato adecuado.
      *
      * @return string: cadena de caracteres con la tabla de símbolos.
      */
